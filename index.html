@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>CSI</title>
 
 		<link rel="stylesheet" href="reveal/dist/reset.css">
 		<link rel="stylesheet" href="reveal/dist/reveal.css">
@@ -14,35 +14,421 @@
 	</head>
 
 
-
 	<body>
 
 
 		<div class="reveal">
 			<div class="slides">
 
-				
-				<section> <h3> Motivations </h3>  </section>
+				<section> 
+					<h1> Rapport de première année de doctorat </h1>
+					</br>
+					</br>
+					<h3 style="text-align: center;"> Gabin Lembrez </h3>
+				</section>
 
-				<section> <h3> Locomotion agile - état de l'art </h3> </section>
+				<section>
+					<!-- <h2> Table des matières </h2> -->
+					<div style="font-size: 1.5em; text-align: left; margin-left: 20%; margin-right: 0%;">
+					<ol type="I">
+						</br>
+						<li>Contexte</li>
+						</br>
+						<li>Problématique</li>
+						</br>
+						<li>Résultats
+						<div style="font-size: 0.6em; text-align: left; margin-left: 10%;">
+							<nobr>
+							<ol type="i">
+								</br>
+								<li>Noyau de viabilité du pendule inverse</li>
+								<li>Noyau de viabilité du pendule sur ressort</li>
+								<li>Commande basée sur la viabilité</li>
+								<li>Extension par la théorie des contraintes virtuelles</li>
+							</ol>
+							</nobr>
+						</div>
+						</li>
+						</br>
+						<li>Prochaines étapes</li>
+						</br>
+					</ol> 
+					</div>
+				</section>
 
-				<section> <h3> Notre approche </h3> </section>
+				<section> 
+					<h1> CONTEXTE </h1>
+				</section>
 
-				<section> <h3> Viabilité </h3> </section>
+				<section>
+					<h2> Motivations </h2>  
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="100%" src="media/img/sports_dynamics.svg" /> 
+						</div>
+						<div class='col' style="text-align: left;">
+							La locomotion bipède du point de vue des êtres vivants:
+							<ul>
+								</br>
+								<li> Mouvements "fluides" et agiles  </li>
+								</br>
+								<li> Utilisation des <em> couplages </em> </li>
+								</br>
+								<li> Mobilisation de tous les effets dynamiques </li>
+								</br>
+							</ul> 
+							Quelles difficultés en robotique ?
+						</div>
+					</div> 
+				</section>
 
-				<section> <h3> Noyau de viabilité du pendule inverse </h3> </section>
+				<section>
+					<h2> Etat de l'art </h2>  
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="70%" src="media/img/simpleMethods.svg" /> 
+						</div>
+						<div class='col'>
+							<h4> Modèles simplifiés </h4>
+							<ul>
+								</br>
+								<li> Basés sur des dérivés du <em>pendule inverse</em>  </li>
+								</br>
+								<li> Permet des comportements robustes </li>
+								</br>
+								<li> Absorbe les effets dynamiques dans le modèle simple </li>
+								</br>
+								<li> Se généralise mal à haute vitesse </li>
+								</br>
+							</ul> 
+						</div>
+					</div> 
+				</section>
 
-				<section> <h3> Noyau de viabilité du pendule sur ressort </h3> </section>
+				<section>
+					<h2> Etat de l'art </h2>  
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="80%" src="media/img/wholeBody.svg" /> 
+						</div>
+						<div class='col'>
+							<h4> Méthodes "corps complet" </h4>
+							<ul>
+								</br>
+								<li> Résoudre un problème de commande optimale en temps réel </li>
+								</br>
+								<li> Mobilise la dynamique complète </li>
+								</br>
+								<li> Optimise les contacts  </li>
+								</br>
+								<li> Requiert une importante puissance de calcul </li>
+								</br>
+							</ul> 
+						</div>
+					</div> 
+				</section>
 
-				<section> <h3> Commande basée sur la viabilité </h3> </section>
+				<section>
+					<h2> Etat de l'art </h2>  
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="100%" src="media/img/IA.svg" /> 
+						</div>
+						<div class='col'>
+							<h4> Méthodes "IA" </h4>
+							<ul>
+								</br>
+								<li> Approche "model-free" </li>
+								</br>
+								<li> Mobilise la dynamique complète </li>
+								</br>
+								<li> Emergence des comportements dynamiques recherchés </li>
+								</br>
+								<li> Défauts des méthodes basées sur des données </li>
+								</br>
+							</ul> 
+						</div>
+					</div> 
+				</section>
 
-				<section> <h3> Contraintes virtuelles </h3> </section>
+				<section> 
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="100%" src="media/img/viabilityDef.svg" /> 
+						</div>
+						<div class='col' style="text-align: left;font-size: 0.8em;">
+							<h2> Noyau de viabilité </h2>
+							</br>
+							<h4> Définition </h4>
+							Le noyau de viabilité $\mathcal{V}$ est l'ensemble des états à partir desquels il existe une commande permettant d'éviter un ensemble d'états d'échecs $\mathcal{F}$.
+							$$
+								\mathcal{V} = \left\{ x\in\mathcal{X} \; | \; \exists u(t)\in\mathcal{U}: x(t+T)\notin \mathcal{F} \right\}
+							$$
+							</br> 
+						</div>
+					</div> 
+				</section>
 
-				<section> <h3> Extension des contraintes virtuelles </h3> </section>
+				<section> 
+					<h2> Problématique </h2>
+					<h4 style="text-align: left;margin-left: 10%;font-size: 1.1em;">Concevoir un méthode de commande de robots à jambes à haute vitesse </h4> 
+					<div style="font-size: 1.5em; text-align: left; margin-left: 20%; ">
+					<ol type="I">
+						</br>
+						<li>Générale</li>
+						</br>
+						<li>Mobilisant les effets dynamiques</li>
+						</br>
+						<li>Basée modèle </li>
+						</br>
+						<li>Sans apprentissage</li>
+						</br>
+					</ol> 
+					</div>
+				</section>
 
-				<section> <h3> Application à un robot à une jambe </h3> </section>
+				<section> 
+					<h1> RESULTATS </h1>
+				</section>
+
+				<section> 
+					<h2> Noyau de viabilité du pendule </h2>
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="60%" src="media/img/pendulum.svg" /> 
+						</div>
+						<div class='col'>
+							<ul>
+								</br>
+								<li> Représentation minimaliste d'un pas </li>
+								</br>
+								<li> Le couple transmissible est supposé limité $\tau<\bar\tau$ </li>
+								</br>
+								<li> L'actionneur a-t'il assez de puissance pour compléter le pas avant que le pendule ne tombe ? </li>
+								</br>
+							</ul> 
+						</div>
+					</div> 
+				</section>
+
+				<section> 
+					<h2> Noyau de viabilité du pendule </h2>
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="100%" src="media/img/viabilityPendulum.svg" /> 
+						</div>
+						<div class='col' style="text-align: left;">
+							<h4> Théorème : </h4>
+								$x=(\theta,\dot{\theta})\in \mathcal{V} $ si :
+								<ol>
+									<li>$\dot{\theta}>0$ et $\bar{u}>1$</li> 
+									<li> $\dot{\theta}<0$ et $\bar{u}\theta > \frac{l}{2g}\dot{\theta}^2+\sin\theta$ </li>
+									<li> $\dot{\theta}>0$, $\bar{u}<1$ et $\arccos(\bar{u})<\theta$ </li>
+									<li> $\dot{\theta}<0$, $\bar{u}<1$ et $\arccos(\bar{u})>\theta$  </li>
+									<li> $\bar{u}<1$, $sign(\dot{\theta})\arccos(\bar{u}) < sign(\dot{\theta})\theta$ et </li>
+									
+								</ol>
+
+									\[
+										\bar{u} > \frac{\sqrt{1-\bar{u}^2}-\frac{l}{2g}\dot{\theta}^2 - \sin\theta}{\arccos (\bar{u})- \theta}
+									\]
+						</div>
+					</div> 
+				</section>
+
+				<section> 
+					<h2> Viabilité du pendule sur ressort </h2>
+					<img class="r-stretch" width="100%" src="media/img/SLIP.svg" /> 
+				</section>
+
+				<section> 
+					<h2> Viabilité du pendule sur ressort </h2>
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="100%" src="media/img/SLIPviability.svg" /> 
+						</div>
+						<div class='col'>
+							<h4> Mise en forme du problème </h4>
+							<ul>
+								</br>
+								<li> La viabilité a du sens vis à vis de la dynamique des actionneurs </li>
+								</br>
+								<li> On choisit une modélisation simple </li>
+								</br>
+								<li> La viabilité est approchée à partir d'une contrainte de hauteur minimale </li>
+								</br>
+							</ul> 
+							\[
+								\mathcal{V} = \left\{ x \; | \; \exists u(t)\in\mathcal{U}:z_a(x)>\bar{z} \; \right\}
+							\]
+						</div>
+					</div> 
+				</section>
+
+				<section> 
+					<h2> Viabilité du pendule sur ressort </h2>
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="100%" src="media/img/SLIPintegrable.svg" /> 
+						</div>
+						<div class='col'>
+							<h4> Approximation de la dynamique </h4>
+							<div style="text-align: left;">
+							Sous des hypothèses raisonnables, on peut approcher la dynamique au sol par un modèle intégrable d'oscillateur harmonique.
+							\[
+								\begin{align}
+									r(t) &= Me^{-\xi\omega_0 t}\cos(\omega_d t + \phi) \\
+									\theta(t) &= \alpha + \beta t + \gamma e^{-\xi\omega_0 t}\cos(\omega_d t + \psi)
+								\end{align}
+							\]
+							On peut estimer la hauteur du prochain saut.
+							</div>
+						</div>
+					</div> 
+				</section>
+
+				<section> 
+					<h2> Commande basée sur la viabilité </h2>
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="100%" src="media/img/viabilityController.svg" /> 
+						</div>
+						<div class='col'>
+							<h4> Contrôleur : </h4>
+							<br/>
+							<em>Objectif :</em> rendre l'ensemble $\mathcal{S}$ invariant
+							\[
+								\begin{cases} 
+									u^* = \text{argmin} \quad J(x_n,u) \\ 
+									\textbf{s.t.} \quad x_{n+1} \in \mathcal{S}
+								\end{cases}
+							\]
+						</div>
+					</div> 
+				</section>
 
 
+				<section> 
+					<h2> Commande basée sur la viabilité </h2>
+					<div class='multiCol'>
+						<div class='col'>
+							<video class="r-stretch" width="100%" src="media/video/userInput.mp4" /> 
+						</div>
+						<div class='col' >
+							<h4> Performances : </h4>
+							<ul>
+								</br>
+								<li> Le contrôleur permet d'accomoder en temps réel des commandes de l'utilisateur </li>
+								</br>
+								<li> Performances indépendantes de la vitesse de déplacement </li>
+								</br>
+								<li> Une définition naturelle de marges de robustesse  </li>
+								</br>
+							</ul> 
+						</div>
+					</div> 
+				</section>
+
+
+				<section> 
+					<h2> Extensions avec des contraintes virtuelles </h2>
+					<img class="r-stretch" width="100%" src="media/img/hopper2SLIP.svg" /> 
+				</section>
+
+				<section> 
+					<h2> Extension avec des contraintes virtuelles </h2>
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="100%" src="media/img/viabilityHZD.svg" /> 
+						</div>
+						<div class='col' style="text-align: left;">
+							<em>Objectif : </em> contraindre le système à exister sur un espace restreint par linéarisation partielle. 
+							</br>
+							</br>
+							Construction des contraintes virtuelles par optimisation :
+							\[
+								\theta^* = \min_{\theta} J(\theta) 
+							\]
+							sous contraintes :
+							\[
+								\begin{align}
+									|u| & < \bar u \\
+									z  & \in \mathcal{V}
+								\end{align}
+							\]
+						</div>
+					</div> 
+				</section>
+
+				<section>
+					<h1> PROCHAINES ETAPES </h1>
+				</section>
+
+				<section>
+					<h2> Court terme </h2>
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="80%" src="media/img/compass.svg" /> 
+						</div>
+						<div class='col' style="text-align: left;">
+							La locomotion bipède du point de vue des êtres vivants:
+							<ul>
+								</br>
+								<li> Mouvements "fluides" et agiles  </li>
+								</br>
+								<li> Utilisation des <em> couplages </em> </li>
+								</br>
+								<li> Mobilisation de tous les effets dynamiques </li>
+								</br>
+							</ul> 
+							Quelles difficultés en robotique ?
+						</div>
+					</div> 
+				</section>
+
+				<section>
+					<h2> Court terme </h2>
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="90%" src="media/img/goalHopper.svg" /> 
+						</div>
+						<div class='col' style="text-align: left;">
+							La locomotion bipède du point de vue des êtres vivants:
+							<ul>
+								</br>
+								<li> Mouvements "fluides" et agiles  </li>
+								</br>
+								<li> Utilisation des <em> couplages </em> </li>
+								</br>
+								<li> Mobilisation de tous les effets dynamiques </li>
+								</br>
+							</ul> 
+							Quelles difficultés en robotique ?
+						</div>
+					</div> 
+				</section>
+
+				<section>
+					<h2> Court terme </h2>
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="90%" src="media/img/generalization.svg" /> 
+						</div>
+						<div class='col' style="text-align: left;">
+							La locomotion bipède du point de vue des êtres vivants:
+							<ul>
+								</br>
+								<li> Mouvements "fluides" et agiles  </li>
+								</br>
+								<li> Utilisation des <em> couplages </em> </li>
+								</br>
+								<li> Mobilisation de tous les effets dynamiques </li>
+								</br>
+							</ul> 
+							Quelles difficultés en robotique ?
+						</div>
+					</div> 
+				</section>
 
 
 			</div>
@@ -57,7 +443,19 @@
 			Reveal.initialize({
 				hash: true,
 				slideNumber: true,
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX  ]
+				width: 1920,
+            	height: 1080,
+  				autoPlayMedia: true,
+				mathjax2: {
+					config: 'TeX-AMS_HTML-full',
+					TeX: {
+						Macros: {
+							R: '\\mathbb{R}',
+							set: [ '\\left\\{#1 \\; ; \\; #2\\right\\}', 2 ]
+						}
+					}
+				},
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.MathJax2  ]
 			});
 		</script>
 	</body>
