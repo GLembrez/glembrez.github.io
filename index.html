@@ -67,12 +67,12 @@
 							<img class="r-stretch" width="100%" src="media/img/sports_dynamics.svg" /> 
 						</div>
 						<div class='col' style="text-align: left;">
-							La locomotion bipède du point de vue des êtres vivants:
+							La locomotion bipède du point de vue des êtres vivants :
 							<ul>
 								</br>
 								<li> Mouvements "fluides" et agiles  </li>
 								</br>
-								<li> Utilisation des <em> couplages </em> </li>
+								<li> Utilisation des couplages (<em>Yeadon, 2000</em>)  </li>
 								</br>
 								<li> Mobilisation de tous les effets dynamiques </li>
 								</br>
@@ -115,7 +115,7 @@
 							<h4> Méthodes "corps complet" </h4>
 							<ul>
 								</br>
-								<li> Résoudre un problème de commande optimale en temps réel </li>
+								<li> Résoudre un problème de commande optimale en temps réel (<em> Tassa et al., 2012 </em>) </li>
 								</br>
 								<li> Mobilise la dynamique complète </li>
 								</br>
@@ -142,13 +142,37 @@
 								</br>
 								<li> Mobilise la dynamique complète </li>
 								</br>
-								<li> Emergence des comportements dynamiques recherchés </li>
+								<li> Emergence des comportements dynamiques recherchés (<em> Radosavovic et al., 2024 </em>) </li>
 								</br>
 								<li> Défauts des méthodes basées sur des données </li>
 								</br>
 							</ul> 
 						</div>
 					</div> 
+				</section>
+
+				<section> 
+					<h2> Problématique </h2>
+					<h4 style="text-align: left;margin-left: 10%;font-size: 1.1em;">Concevoir un méthode de commande de robots à jambes à haute vitesse </h4> 
+					<div style="font-size: 1.5em; text-align: left; margin-left: 20%; ">
+					<ol type="I">
+						</br>
+						<li class="fragment">Générale</li>
+						</br>
+						<li class="fragment">Mobilisant les effets dynamiques</li>
+						</br>
+						<li class="fragment">Basée modèle - sans apprentissage </li>
+						</br>
+						<li class="fragment">Interprétable</li>
+						</br>
+					</ol> 
+					</div>
+				</section>
+
+				<section>
+					<h2> Notre approche </h2>
+
+
 				</section>
 
 				<section> 
@@ -160,7 +184,7 @@
 							<h2> Noyau de viabilité </h2>
 							</br>
 							<h4> Définition </h4>
-							Le noyau de viabilité $\mathcal{V}$ est l'ensemble des états à partir desquels il existe une commande permettant d'éviter un ensemble d'états d'échecs $\mathcal{F}$.
+							Le noyau de viabilité $\mathcal{V}$ est l'ensemble des états à partir desquels il existe une commande permettant d'éviter un ensemble d'états d'échecs $\mathcal{F}$ (<em>Wieber, 2008</em>).
 							$$
 								\mathcal{V} = \left\{ x\in\mathcal{X} \; | \; \exists u(t)\in\mathcal{U}: x(t+T)\notin \mathcal{F} \right\}
 							$$
@@ -169,23 +193,7 @@
 					</div> 
 				</section>
 
-				<section> 
-					<h2> Problématique </h2>
-					<h4 style="text-align: left;margin-left: 10%;font-size: 1.1em;">Concevoir un méthode de commande de robots à jambes à haute vitesse </h4> 
-					<div style="font-size: 1.5em; text-align: left; margin-left: 20%; ">
-					<ol type="I">
-						</br>
-						<li>Générale</li>
-						</br>
-						<li>Mobilisant les effets dynamiques</li>
-						</br>
-						<li>Basée modèle </li>
-						</br>
-						<li>Sans apprentissage</li>
-						</br>
-					</ol> 
-					</div>
-				</section>
+				
 
 				<section> 
 					<h1> RESULTATS </h1>
@@ -274,7 +282,7 @@
 						<div class='col'>
 							<h4> Approximation de la dynamique </h4>
 							<div style="text-align: left;">
-							Sous des hypothèses raisonnables, on peut approcher la dynamique au sol par un modèle intégrable d'oscillateur harmonique.
+							Sous des hypothèses raisonnables, on peut approcher la dynamique au sol par un modèle intégrable d'oscillateur harmonique (<em>Saranli et al., 2010</em>).
 							\[
 								\begin{align}
 									r(t) &= Me^{-\xi\omega_0 t}\cos(\omega_d t + \phi) \\
@@ -342,7 +350,7 @@
 							<img class="r-stretch" width="100%" src="media/img/viabilityHZD.svg" /> 
 						</div>
 						<div class='col' style="text-align: left;">
-							<em>Objectif : </em> contraindre le système à exister sur un espace restreint par linéarisation partielle. 
+							<em>Objectif : </em> contraindre le système à exister sur un espace restreint par linéarisation partielle. (<em> Westerveldt et al., 2003 - Griffin et al., 2017 </em>)
 							</br>
 							</br>
 							Construction des contraintes virtuelles par optimisation :
@@ -360,6 +368,27 @@
 					</div> 
 				</section>
 
+				<section> 
+					<h2> Commande basée sur la viabilité </h2>
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="100%" src="media/img/constrained_hopper.svg" /> 
+						</div>
+						<div class='col' >
+							<h4> Analyse et perspectives : </h4>
+							<ul>
+								</br>
+								<li> La définition "naïve" de la contrainte ne permet pas d'estimer la hauteur du prochain apex</li>
+								</br>
+								<li> Il faut écrire la zéro-dynamique </li>
+								</br>
+								<li> Peut être utilisé pour initialiser la recherche d'optimum </li>
+								</br>
+							</ul> 
+						</div>
+					</div> 
+				</section>
+
 				<section>
 					<h1> PROCHAINES ETAPES </h1>
 				</section>
@@ -368,67 +397,41 @@
 					<h2> Court terme </h2>
 					<div class='multiCol'>
 						<div class='col'>
-							<img class="r-stretch" width="80%" src="media/img/compass.svg" /> 
+							<div class="r-stack">
+							<img class="fragment current-visible" data-fragment-index="1" width="80%" src="media/img/compass.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="2" width="90%" src="media/img/goalHopper.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="3" width="90%" src="media/img/generalization.svg" /> 
+							</div>
 						</div>
 						<div class='col' style="text-align: left;">
-							La locomotion bipède du point de vue des êtres vivants:
 							<ul>
 								</br>
-								<li> Mouvements "fluides" et agiles  </li>
+								<li class="fragment" data-fragment-index="1"> Commande du compas (<em>Spong, 1999</em>)  à partir du noyau de viabilité du pendule iverse </li>
 								</br>
-								<li> Utilisation des <em> couplages </em> </li>
+								<li class="fragment" data-fragment-index="2"> Finalisation de la commande du sauteur en boucle fermée </li>
 								</br>
-								<li> Mobilisation de tous les effets dynamiques </li>
+								<li class="fragment" data-fragment-index="3"> Généralisation à plusieurs membres </li>
 								</br>
 							</ul> 
-							Quelles difficultés en robotique ?
 						</div>
 					</div> 
 				</section>
 
-				<section>
-					<h2> Court terme </h2>
-					<div class='multiCol'>
-						<div class='col'>
-							<img class="r-stretch" width="90%" src="media/img/goalHopper.svg" /> 
-						</div>
-						<div class='col' style="text-align: left;">
-							La locomotion bipède du point de vue des êtres vivants:
-							<ul>
-								</br>
-								<li> Mouvements "fluides" et agiles  </li>
-								</br>
-								<li> Utilisation des <em> couplages </em> </li>
-								</br>
-								<li> Mobilisation de tous les effets dynamiques </li>
-								</br>
-							</ul> 
-							Quelles difficultés en robotique ?
-						</div>
-					</div> 
+				<section> 
+					<h2> Long terme </h2>
+					<div style="font-size: 1.5em; text-align: left; margin-left: 20%; ">
+					<ol type="I">
+						</br>
+						<li class="fragment">Approche systématique de la conception des contraintes</li>
+						</br>
+						<li class="fragment">Passage en 3 dimensions</li>
+						</br>
+						<li class="fragment">Application à des systèmes réels </li>
+						</br>
+					</ol> 
+					</div>
 				</section>
 
-				<section>
-					<h2> Court terme </h2>
-					<div class='multiCol'>
-						<div class='col'>
-							<img class="r-stretch" width="90%" src="media/img/generalization.svg" /> 
-						</div>
-						<div class='col' style="text-align: left;">
-							La locomotion bipède du point de vue des êtres vivants:
-							<ul>
-								</br>
-								<li> Mouvements "fluides" et agiles  </li>
-								</br>
-								<li> Utilisation des <em> couplages </em> </li>
-								</br>
-								<li> Mobilisation de tous les effets dynamiques </li>
-								</br>
-							</ul> 
-							Quelles difficultés en robotique ?
-						</div>
-					</div> 
-				</section>
 
 
 			</div>
@@ -441,6 +444,7 @@
 		<script src="reveal/plugin/math/math.js"></script>
 		<script>
 			Reveal.initialize({
+				transition: 'none',
 				hash: true,
 				slideNumber: true,
 				width: 1920,
