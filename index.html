@@ -71,9 +71,7 @@
 							<ul>
 								</br>
 								<li> Mouvements "fluides" et agiles  </li>
-								</br>
 								<li> Utilisation des couplages (<em>Yeadon, 2000</em>)  </li>
-								</br>
 								<li> Mobilisation de tous les effets dynamiques </li>
 								</br>
 							</ul> 
@@ -155,21 +153,19 @@
 					<div class='multiCol'>
 						<div class='col'>
 							<div class="r-stack">
-							<img class="fragment current-visible" data-fragment-index="1" width="70%" src="media/img/simpleMethods.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="1" width="60%" src="media/img/simpleMethods.svg" /> 
 							<img class="fragment current-visible" data-fragment-index="2" width="90%" src="media/img/wholeBody.svg" /> 
-							<img class="fragment current-visible" data-fragment-index="3" width="90%" src="media/img/IA.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/IA.svg" /> 
 							</div>
 						</div>
 						<div class='col' style="text-align: left;">
 							<h2 class="fragment" data-fragment-index="1"> Etat de l'art </h2>
 							<ul>
 								</br>
-								<li class="fragment" data-fragment-index="1"> Modèles simples </li>
-								</br>
-								<li class="fragment" data-fragment-index="2"> Optimisation de trajectoire  </li>
-								</br>
+								<li class="fragment" data-fragment-index="1"> Modèles simples dérivés du pendule inverse (<em>Chen 2023</em>) </li>
+								<li class="fragment" data-fragment-index="2"> Optimisation de trajectoire et commande prédictive (<em>Tassa 2012 </em>) </li>
 								<li class="fragment" data-fragment-index="3"> Apprentissage par renforcement </li>
-								</br>
+								<li class="fragment" data-fragment-index="4"> Contraintes virtuelles </li>
 							</ul> 
 						</div>
 					</div> 
@@ -182,13 +178,9 @@
 					<ol type="I">
 						</br>
 						<li class="fragment">Générale</li>
-						</br>
 						<li class="fragment">Mobilisant les effets dynamiques</li>
-						</br>
 						<li class="fragment">Basée modèle - sans apprentissage </li>
-						</br>
 						<li class="fragment">Interprétable</li>
-						</br>
 					</ol> 
 					</div>
 				</section>
@@ -206,11 +198,13 @@
 						<div class='col' style="text-align: left;font-size: 0.8em;">
 							<h2> Noyau de viabilité </h2>
 							</br>
+							<div class="block">
 							<h4> Définition </h4>
-							Le noyau de viabilité $\mathcal{V}$ est l'ensemble des états à partir desquels il existe une commande permettant d'éviter un ensemble d'états d'échecs $\mathcal{F}$ (<em>Wieber, 2008</em>).
-							$$
+							<p>Le noyau de viabilité $\mathcal{V}$ est l'ensemble des états à partir desquels il existe une commande permettant d'éviter un ensemble d'états d'échecs $\mathcal{F}$ (<em>Wieber, 2008</em>).</p>
+							\[
 								\mathcal{V} = \left\{ x\in\mathcal{X} \; | \; \exists u(t)\in\mathcal{U}: x(t+T)\notin \mathcal{F} \right\}
-							$$
+							\]
+							</div>
 							</br> 
 						</div>
 					</div> 
@@ -230,13 +224,9 @@
 						</div>
 						<div class='col'>
 							<ul>
-								</br>
 								<li> Représentation minimaliste d'un pas </li>
-								</br>
 								<li> Le couple transmissible est supposé limité $\tau<\bar\tau$ </li>
-								</br>
 								<li> L'actionneur a-t'il assez de puissance pour compléter le pas avant que le pendule ne tombe ? </li>
-								</br>
 							</ul> 
 						</div>
 					</div> 
@@ -249,20 +239,26 @@
 							<img class="r-stretch" width="100%" src="media/img/viabilityPendulum.svg" /> 
 						</div>
 						<div class='col' style="text-align: left;">
+							<div class="block">
 							<h4> Théorème : </h4>
-								$x=(\theta,\dot{\theta})\in \mathcal{V} $ si :
-								<ol>
-									<li>$\dot{\theta}>0$ et $\bar{u}>1$</li> 
-									<li> $\dot{\theta}<0$ et $\bar{u}\theta > \frac{l}{2g}\dot{\theta}^2+\sin\theta$ </li>
-									<li> $\dot{\theta}>0$, $\bar{u}<1$ et $\arccos(\bar{u})<\theta$ </li>
-									<li> $\dot{\theta}<0$, $\bar{u}<1$ et $\arccos(\bar{u})>\theta$  </li>
-									<li> $\bar{u}<1$, $sign(\dot{\theta})\arccos(\bar{u}) < sign(\dot{\theta})\theta$ et </li>
-									
-								</ol>
-
+								$x=(\theta,\dot{\theta})\in \mathcal{V} $ si l'une des conditions suivantes est vérifiée :
+								<ol style="margin-left: 15%; font-size: 0.8em;">
+									<li style="margin-top: 0.5em;margin-bottom: 0.5em;">
+										$\dot{\theta}>0$ et $\bar{u}>1$
+									</li> 
+									<li  style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\dot{\theta}<0$ et $\bar{u}\theta > \frac{l}{2g}\dot{\theta}^2+\sin\theta$ </li>
+									<li style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\dot{\theta}>0$, $\bar{u}<1$ et $\arccos(\bar{u})<\theta$ </li>
+									<li style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\dot{\theta}<0$, $\bar{u}<1$ et $\arccos(\bar{u})>\theta$  </li>
+									<li style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\bar{u}<1$, $sign(\dot{\theta})\arccos(\bar{u}) < sign(\dot{\theta})\theta$ et 
+									</li>
 									\[
 										\bar{u} > \frac{\sqrt{1-\bar{u}^2}-\frac{l}{2g}\dot{\theta}^2 - \sin\theta}{\arccos (\bar{u})- \theta}
 									\]
+									
+								</ol>
+
+									
+						</div>
 						</div>
 					</div> 
 				</section>
@@ -283,15 +279,15 @@
 							<ul>
 								</br>
 								<li> La viabilité a du sens vis à vis de la dynamique des actionneurs </li>
-								</br>
 								<li> On choisit une modélisation simple </li>
-								</br>
 								<li> La viabilité est approchée à partir d'une contrainte de hauteur minimale </li>
 								</br>
 							</ul> 
+							<div class="block">
 							\[
 								\mathcal{V} = \left\{ x \; | \; \exists u(t)\in\mathcal{U}:z_a(x)>\bar{z} \; \right\}
 							\]
+						</div>
 						</div>
 					</div> 
 				</section>
@@ -350,11 +346,8 @@
 							<ul>
 								</br>
 								<li> Le contrôleur permet d'accomoder en temps réel des commandes de l'utilisateur </li>
-								</br>
 								<li> Performances indépendantes de la vitesse de déplacement </li>
-								</br>
 								<li> Une définition naturelle de marges de robustesse  </li>
-								</br>
 							</ul> 
 						</div>
 					</div> 
@@ -362,20 +355,23 @@
 
 
 				<section> 
-					<h2> Extensions avec des contraintes virtuelles </h2>
+					<h2> Extension : contraintes virtuelles </h2>
 					<img class="r-stretch" width="100%" src="media/img/hopper2SLIP.svg" /> 
 				</section>
 
 				<section> 
-					<h2> Extension avec des contraintes virtuelles </h2>
+					<h2> Extension : contraintes virtuelles </h2>
+
 					<div class='multiCol'>
 						<div class='col'>
 							<img class="r-stretch" width="100%" src="media/img/viabilityHZD.svg" /> 
 						</div>
 						<div class='col' style="text-align: left;">
+							<p>
 							<em>Objectif : </em> contraindre le système à exister sur un espace restreint par linéarisation partielle. (<em> Westerveldt et al., 2003 - Griffin et al., 2017 </em>)
 							</br>
 							</br>
+							<div class="block">
 							Construction des contraintes virtuelles par optimisation :
 							\[
 								\theta^* = \min_{\theta} J(\theta) 
@@ -387,6 +383,8 @@
 									z  & \in \mathcal{V}
 								\end{align}
 							\]
+							</div>
+							</p>
 						</div>
 					</div> 
 				</section>
@@ -402,11 +400,8 @@
 							<ul>
 								</br>
 								<li> La définition "naïve" de la contrainte ne permet pas d'estimer la hauteur du prochain apex</li>
-								</br>
 								<li> Il faut écrire la zéro-dynamique </li>
-								</br>
 								<li> Peut être utilisé pour initialiser la recherche d'optimum </li>
-								</br>
 							</ul> 
 						</div>
 					</div> 
@@ -428,13 +423,9 @@
 						</div>
 						<div class='col' style="text-align: left;">
 							<ul>
-								</br>
 								<li class="fragment" data-fragment-index="1"> Commande du compas (<em>Spong, 1999</em>)  à partir du noyau de viabilité du pendule iverse </li>
-								</br>
 								<li class="fragment" data-fragment-index="2"> Finalisation de la commande du sauteur en boucle fermée </li>
-								</br>
 								<li class="fragment" data-fragment-index="3"> Généralisation à plusieurs membres </li>
-								</br>
 							</ul> 
 						</div>
 					</div> 
@@ -446,12 +437,27 @@
 					<ol type="I">
 						</br>
 						<li class="fragment">Approche systématique de la conception des contraintes</li>
-						</br>
 						<li class="fragment">Passage en 3 dimensions</li>
-						</br>
 						<li class="fragment">Application à des systèmes réels </li>
 						</br>
 					</ol> 
+					</div>
+				</section>
+
+				<section>
+					<h2> Références </h2>
+					<div class="content" style="height: 800px; margin-left: 10%; margin-right: 5%; text-align: left;">
+						<ul class="refList">
+
+							<li>Yeadon, Maurice R. "Aerial movement." <i>Biomechanics in sport: performance enhancement and injury prevention</i> (2000): 273-283.</li>
+
+							<li> Chen, Yu-Ming. Toward High-Performance Simple Models of Legged Locomotion.<i> Diss. University of Pennsylvania,</i> 2023. </li>
+
+							<li> Tassa, Yuval, Tom Erez, and Emanuel Todorov. "Synthesis and stabilization of complex behaviors through online trajectory optimization."<i> 2012 IEEE/RSJ International Conference on Intelligent Robots and Systems. </i> IEEE, 2012. </li>
+
+							<li> Radosavovic, I., Xiao, T., Zhang, B., Darrell, T., Malik, J., & Sreenath, K. (2024). Real-world humanoid locomotion with reinforcement learning. <i> Science robotics, 9(89). </i> </li>
+
+						</ul>
 					</div>
 				</section>
 
