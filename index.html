@@ -29,29 +29,24 @@
 
 				<section>
 					<!-- <h2> Table des matières </h2> -->
-					<div style="font-size: 1.5em; text-align: left; margin-left: 20%; margin-right: 0%;">
+					<div style="font-size: 1.5em;font-weight: bold; text-align: left; margin-left: 20%; margin-right: 0%;">
 					<ol type="I">
-						</br>
 						<li>Contexte</li>
-						</br>
 						<li>Problématique</li>
-						</br>
 						<li>Résultats
 						<div style="font-size: 0.6em; text-align: left; margin-left: 10%;">
-							<nobr>
 							<ol type="i">
 								</br>
+								<nobr>
 								<li>Noyau de viabilité du pendule inverse</li>
 								<li>Noyau de viabilité du pendule sur ressort</li>
 								<li>Commande basée sur la viabilité</li>
 								<li>Extension par la théorie des contraintes virtuelles</li>
+								</nobr>
 							</ol>
-							</nobr>
 						</div>
 						</li>
-						</br>
 						<li>Prochaines étapes</li>
-						</br>
 					</ol> 
 					</div>
 				</section>
@@ -61,21 +56,24 @@
 				</section>
 
 				<section>
-					<h2> Motivations </h2>  
 					<div class='multiCol'>
 						<div class='col'>
 							<img class="r-stretch" width="100%" src="media/img/sports_dynamics.svg" /> 
 						</div>
 						<div class='col' style="text-align: left;">
-							La locomotion bipède du point de vue des êtres vivants :
+						<h2> Motivations </h2>  
+						</br>
+							<p>La locomotion bipède du point de vue des êtres vivants :</p>
 							<ul>
 								</br>
-								<li> Mouvements "fluides" et agiles  </li>
-								<li> Utilisation des couplages (<em>Yeadon, 2000</em>)  </li>
-								<li> Mobilisation de tous les effets dynamiques </li>
+								<li class="fragment"> Mouvements "fluides" et agiles  </li>
+								<li class="fragment"> Utilisation des couplages (<em>Yeadon, 2000</em>)  </li>
+								<li class="fragment"> Mobilisation de tous les effets dynamiques </li>
 								</br>
 							</ul> 
+							<div class="alert fragment" style="text-align: center;">
 							Quelles difficultés en robotique ?
+							</div>
 						</div>
 					</div> 
 				</section>
@@ -155,7 +153,8 @@
 							<div class="r-stack">
 							<img class="fragment current-visible" data-fragment-index="1" width="60%" src="media/img/simpleMethods.svg" /> 
 							<img class="fragment current-visible" data-fragment-index="2" width="90%" src="media/img/wholeBody.svg" /> 
-							<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/IA.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/virtualConstraints.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="4" width="100%" src="media/img/IA.svg" /> 
 							</div>
 						</div>
 						<div class='col' style="text-align: left;">
@@ -163,9 +162,9 @@
 							<ul>
 								</br>
 								<li class="fragment" data-fragment-index="1"> Modèles simples dérivés du pendule inverse (<em>Chen 2023</em>) </li>
-								<li class="fragment" data-fragment-index="2"> Optimisation de trajectoire et commande prédictive (<em>Tassa 2012 </em>) </li>
-								<li class="fragment" data-fragment-index="3"> Apprentissage par renforcement </li>
-								<li class="fragment" data-fragment-index="4"> Contraintes virtuelles </li>
+								<li class="fragment" data-fragment-index="2"> Optimisation de trajectoire et commande prédictive (<em>Tassa et al. 2012 </em>) </li>
+								<li class="fragment" data-fragment-index="3"> Contraintes virtuelles : stabilisation de trajectoires périodiques par linéarisation partielle (<em> Westervelt et al. 2003</em>)</li>
+								<li class="fragment" data-fragment-index="4"> Apprentissage par renforcement : émergence de comportements agiles  (<em>Radosavovic et al., 2024 </em>) </li>
 							</ul> 
 						</div>
 					</div> 
@@ -173,21 +172,25 @@
 
 				<section> 
 					<h2> Problématique </h2>
-					<h4 style="text-align: left;margin-left: 10%;font-size: 1.1em;">Concevoir un méthode de commande de robots à jambes à haute vitesse </h4> 
+					<h4 style="text-align: left;margin-left: 10%;font-size: 1.1em;">Concevoir un méthode de commande pour robots à jambes dynamiques </h4> 
 					<div style="font-size: 1.5em; text-align: left; margin-left: 20%; ">
 					<ol type="I">
 						</br>
 						<li class="fragment">Générale</li>
 						<li class="fragment">Mobilisant les effets dynamiques</li>
-						<li class="fragment">Basée modèle - sans apprentissage </li>
+						<li class="fragment">Basée modèle </li>
 						<li class="fragment">Interprétable</li>
 					</ol> 
 					</div>
 				</section>
 
 				<section>
-					<h2> Notre approche </h2>
-					<img class="r-stretch" width="100%" src="media/img/approche.svg" /> 
+					<h2 style="margin-left: 0%;text-align: center;"> Notre approche </h2>
+					<div class="r-stack">
+					<img class="fragment current-visible" data-fragment-index="0" width="75%" src="media/img/approche1.svg" /> 
+					<img class="fragment current-visible" data-fragment-index="1" width="75%" src="media/img/approche2.svg" /> 
+					<img class="fragment current-visible" data-fragment-index="2" width="75%" src="media/img/approche.svg" /> 
+					</div>
 				</section>
 
 				<section> 
@@ -202,7 +205,10 @@
 							<h4> Définition </h4>
 							<p>Le noyau de viabilité $\mathcal{V}$ est l'ensemble des états à partir desquels il existe une commande permettant d'éviter un ensemble d'états d'échecs $\mathcal{F}$ (<em>Wieber, 2008</em>).</p>
 							\[
-								\mathcal{V} = \left\{ x\in\mathcal{X} \; | \; \exists u(t)\in\mathcal{U}: x(t+T)\notin \mathcal{F} \right\}
+							\begin{align}
+								\mathcal{F} &= \left\{ x\in\mathcal{X} \; | \; \textit{Le robot est au sol} \; \right\} \\
+								\mathcal{V} &= \left\{ x(0)\in\mathcal{X} \; | \; \forall t>0, \exists u(t)\in\mathcal{U}: x(t)\notin \mathcal{F} \right\} 
+							\end{align}
 							\]
 							</div>
 							</br> 
@@ -223,10 +229,12 @@
 							<img class="r-stretch" width="60%" src="media/img/pendulum.svg" /> 
 						</div>
 						<div class='col'>
+							<h4> Modélisation </h4>
 							<ul>
-								<li> Représentation minimaliste d'un pas </li>
-								<li> Le couple transmissible est supposé limité $\tau<\bar\tau$ </li>
-								<li> L'actionneur a-t'il assez de puissance pour compléter le pas avant que le pendule ne tombe ? </li>
+								</br>
+								<li class="fragment"> Représentation minimaliste d'un pas </li>
+								<li class="fragment"> Le couple transmissible est supposé limité <strong>$$u<\bar u$$</strong> </li>
+								<li class="fragment"> L'actionneur a-t'il assez de puissance pour compléter le pas avant que le pendule ne tombe ? </li>
 							</ul> 
 						</div>
 					</div> 
@@ -278,12 +286,12 @@
 							<h4> Mise en forme du problème </h4>
 							<ul>
 								</br>
-								<li> La viabilité a du sens vis à vis de la dynamique des actionneurs </li>
-								<li> On choisit une modélisation simple </li>
-								<li> La viabilité est approchée à partir d'une contrainte de hauteur minimale </li>
+								<li class="fragment" data-fragment-index="1"> La viabilité a du sens vis à vis de la dynamique des actionneurs </li>
+								<li class="fragment" data-fragment-index="2"> On choisit une modélisation simple </li>
+								<li class="fragment" data-fragment-index="3"> La viabilité est approchée à partir d'une contrainte de hauteur minimale </li>
 								</br>
 							</ul> 
-							<div class="block">
+							<div class="block fragment" data-fragment-index="3">
 							\[
 								\mathcal{V} = \left\{ x \; | \; \exists u(t)\in\mathcal{U}:z_a(x)>\bar{z} \; \right\}
 							\]
@@ -300,6 +308,7 @@
 						</div>
 						<div class='col'>
 							<h4> Approximation de la dynamique </h4>
+							</br>
 							<div style="text-align: left;">
 							Sous des hypothèses raisonnables, on peut approcher la dynamique au sol par un modèle intégrable d'oscillateur harmonique (<em>Saranli et al., 2010</em>).
 							\[
@@ -323,7 +332,7 @@
 						<div class='col'>
 							<h4> Contrôleur : </h4>
 							<br/>
-							<em>Objectif :</em> rendre l'ensemble $\mathcal{S}$ invariant
+							<strong>Objectif :</strong> rendre l'ensemble $\mathcal{S}\subset\mathcal{V}$ invariant
 							\[
 								\begin{cases} 
 									u^* = \text{argmin} \quad J(x_n,u) \\ 
@@ -345,9 +354,9 @@
 							<h4> Performances : </h4>
 							<ul>
 								</br>
-								<li> Le contrôleur permet d'accomoder en temps réel des commandes de l'utilisateur </li>
-								<li> Performances indépendantes de la vitesse de déplacement </li>
-								<li> Une définition naturelle de marges de robustesse  </li>
+								<li class="fragment"> Le contrôleur permet d'accomoder en temps réel des commandes de l'utilisateur </li>
+								<li class="fragment"> Performances indépendantes de la vitesse de déplacement </li>
+								<li class="fragment"> Une définition naturelle de marges de robustesse  </li>
 							</ul> 
 						</div>
 					</div> 
@@ -364,15 +373,18 @@
 
 					<div class='multiCol'>
 						<div class='col'>
-							<img class="r-stretch" width="100%" src="media/img/viabilityHZD.svg" /> 
+							<div class="r-stack">
+							<img class="fragment current-visible" data-fragment-index="0" width="100%" src="media/img/HZD.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="1" width="100%" src="media/img/viabilityHZD.svg" /> 
+							</div>
 						</div>
 						<div class='col' style="text-align: left;">
 							<p>
-							<em>Objectif : </em> contraindre le système à exister sur un espace restreint par linéarisation partielle. (<em> Westerveldt et al., 2003 - Griffin et al., 2017 </em>)
+							<strong>Objectif : </strong> contraindre le système à exister sur un espace restreint par linéarisation partielle. (<em> Westervelt et al., 2003 - Griffin et al., 2017 </em>)
 							</br>
 							</br>
 							<div class="block">
-							Construction des contraintes virtuelles par optimisation :
+							Construction des contraintes virtuelles :
 							\[
 								\theta^* = \min_{\theta} J(\theta) 
 							\]
@@ -399,9 +411,9 @@
 							<h4> Analyse et perspectives : </h4>
 							<ul>
 								</br>
-								<li> La définition "naïve" de la contrainte ne permet pas d'estimer la hauteur du prochain apex</li>
-								<li> Il faut écrire la zéro-dynamique </li>
-								<li> Peut être utilisé pour initialiser la recherche d'optimum </li>
+								<li class="fragment"> La définition "naïve" de la contrainte ne permet pas d'estimer la hauteur du prochain apex</li>
+								<li class="fragment"> Il faut écrire la zéro-dynamique </li>
+								<li class="fragment"> Peut être utilisé pour initialiser la recherche d'optimum </li>
 							</ul> 
 						</div>
 					</div> 
@@ -416,7 +428,7 @@
 					<div class='multiCol'>
 						<div class='col'>
 							<div class="r-stack">
-							<img class="fragment current-visible" data-fragment-index="1" width="80%" src="media/img/compass.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="1" width="60%" src="media/img/compass.svg" /> 
 							<img class="fragment current-visible" data-fragment-index="2" width="90%" src="media/img/goalHopper.svg" /> 
 							<img class="fragment current-visible" data-fragment-index="3" width="90%" src="media/img/generalization.svg" /> 
 							</div>
@@ -448,6 +460,7 @@
 					<h2> Références </h2>
 					<div class="content" style="height: 800px; margin-left: 10%; margin-right: 5%; text-align: left;">
 						<ul class="refList">
+							</br>
 
 							<li>Yeadon, Maurice R. "Aerial movement." <i>Biomechanics in sport: performance enhancement and injury prevention</i> (2000): 273-283.</li>
 
@@ -456,6 +469,20 @@
 							<li> Tassa, Yuval, Tom Erez, and Emanuel Todorov. "Synthesis and stabilization of complex behaviors through online trajectory optimization."<i> 2012 IEEE/RSJ International Conference on Intelligent Robots and Systems. </i> IEEE, 2012. </li>
 
 							<li> Radosavovic, I., Xiao, T., Zhang, B., Darrell, T., Malik, J., & Sreenath, K. (2024). Real-world humanoid locomotion with reinforcement learning. <i> Science robotics, 9(89). </i> </li>
+
+							<li> E. R. Westervelt, J. W. Grizzle and D. E. Koditschek, "Hybrid zero dynamics of planar biped walkers," in <i>IEEE Transactions on Automatic Control</i>, vol. 48, no. 1, pp. 42-56, Jan. 2003 </li>
+
+							<li>Griffin B, Grizzle J. Nonholonomic virtual constraints and gait optimization for robust walking control. <i>The International Journal of Robotics Research.</i> 2017</li>
+
+							<li>Saranli, U., Arslan, Ö., Ankarali, M.M. et al. Approximate analytic solutions to non-symmetric stance trajectories of the passive Spring-Loaded Inverted Pendulum with damping. <i>Nonlinear Dyn 62</i>, 729-742 (2010).</li>
+
+							<li>S. Le Cleac'h et al., "Fast Contact-Implicit Model Predictive Control," in <i>IEEE Transactions on Robotics</i>, vol. 40, pp. 1617-1629, 2024</li>
+
+							<li>Jallet, W., Bambade, A., Arlaud, E., El-Kazdadi, S., Mansard, N., & Carpentier, J. (2025). Proxddp: Proximal constrained trajectory optimization. <i>IEEE Transactions on Robotics</i>.</li>
+
+							<li>Spong, M. W. (1999). Passivity based control of the compass gait biped. <i>IFAC Proceedings Volumes</i>, 32(2), 506-510.</li>
+
+							<li>I. Poulakakis and J. W. Grizzle, "The Spring Loaded Inverted Pendulum as the Hybrid Zero Dynamics of an Asymmetric Hopper," in <i>IEEE Transactions on Automatic Control</i>, vol. 54, no. 8, pp. 1779-1793, Aug. 2009</li>
 
 						</ul>
 					</div>
