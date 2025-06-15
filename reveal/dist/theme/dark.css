@@ -312,6 +312,15 @@ section.has-light-background, section.has-light-background h1, section.has-light
   margin: var(--r-block-margin) 0;
 }
 
+.reveal .slide-number 
+{
+  font-size: 20pt;
+  color: var(--r-main-color); 
+  background-color: transparent;
+  left: 20px !important;
+  bottom: 20px !important;
+}
+
 /*********************************************
  * LINKS
  *********************************************/
