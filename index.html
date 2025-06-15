@@ -76,6 +76,13 @@
 							</div>
 						</div>
 					</div> 
+
+					<aside class="notes">
+						<p>On s'intéresse à la locomotion, en particulier bipède.
+						Pour des êtres vivants, il n'est pas difficile de réaliser des mouvements fluides et agiles. 
+						</p>
+					</aside>
+
 				</section>
 
 				<!-- <section>
@@ -168,6 +175,15 @@
 							</ul> 
 						</div>
 					</div> 
+					<aside class="notes">
+						Pour comprendre ces difficultés, résumé sommaire des méthodes existantes pour commander la locomotion bipède
+						<ul>
+							<li> robuste mais absorbe la dynamique </li>
+							<li> corps complet. Puissant mais coûteux </li>
+							<li> corps complet mais périodique </li>
+							<li> complet + émergence mais base de données</li>
+						</ul>
+					</aside>
 				</section>
 
 				<section> 
@@ -191,6 +207,16 @@
 					<img class="fragment current-visible" data-fragment-index="1" width="75%" src="media/img/approche2.svg" /> 
 					<img class="fragment current-visible" data-fragment-index="2" width="75%" src="media/img/approche.svg" /> 
 					</div>
+
+					<aside class="notes">
+						On part de systèmes simples : ... définir stabilité au sens de "se déplacer sans tomber"
+						<ul>
+							<li> on complexifie avec contraintes </li>
+							<li> objectif: général et 3D </li>
+							<li> enrichir dyna = augmenter potentiel de prop </li>
+							<li> capacité de ne pas tomber au regard de dynamiques plus simples</li>
+						</ul>
+					</aside>
 				</section>
 
 				<section> 
@@ -214,6 +240,9 @@
 							</br> 
 						</div>
 					</div> 
+					<aside class="notes">
+						Donner du sens à la capacité de ne pas tomber
+					</aside>
 				</section>
 
 				
@@ -269,11 +298,18 @@
 						</div>
 						</div>
 					</div> 
+
+					<aside class="notes">
+						Partir de la figure
+					</aside>
 				</section>
 
 				<section> 
 					<h2> Viabilité du pendule sur ressort </h2>
 					<img class="r-stretch" width="90%" src="media/img/SLIP.svg" /> 
+					<aside class="notes">
+						Système plus riche très utilisé en bioméca pour modéliser la course + pas intégrable analytiquement
+					</aside>
 				</section>
 
 				<section> 
@@ -298,6 +334,12 @@
 						</div>
 						</div>
 					</div> 
+
+
+					<aside class="notes">
+						dynamique  - choix simple - l'actionneur a t'il assez de puissance pour angle d'attaque viable au sens de hauteur min du prochain saut
+					</aside>
+
 				</section>
 
 				<section> 
@@ -321,6 +363,12 @@
 							</div>
 						</div>
 					</div> 
+
+
+					<aside class="notes">
+						Pas intégrable donc approximation intégrable. Forme oscillateur + commenter figure et qualité 1%
+					</aside>
+
 				</section>
 
 				<section> 
@@ -341,6 +389,11 @@
 							\]
 						</div>
 					</div> 
+
+					<aside class="notes">
+						On a le noyau de viabilité - comment on écrit le contrôleur = le rendre invariant. 
+					</aside>
+
 				</section>
 
 				<section> 
@@ -359,12 +412,33 @@
 							</ul> 
 						</div>
 					</div> 
+
+					<aside class="notes">
+						on l'implémente
+						<ol>
+							<li>temps reel</li>
+							<li>indep de vitesse</li>
+							<li>marge de robustesse = distance bord du noyau</li>
+							<li>Walking conference 2025</li>
+						</ol>
+					</aside>
+
 				</section>
 
 
 				<section> 
 					<h2> Extension : contraintes virtuelles </h2>
 					<img class="r-stretch" width="100%" src="media/img/hopper2SLIP.svg" /> 
+
+					<aside class="notes">
+						<ol>
+							<li>Generaliser a un systeme + realiste + riche</li>
+							<li>jambe inertie non neg</li>
+							<li>contraindre dynamique espace plus simple</li>
+							<li>ramener au travail precedent</li>
+						</ol>
+					</aside>
+
 				</section>
 
 				<section> 
@@ -398,6 +472,15 @@
 							</p>
 						</div>
 					</div> 
+					<aside class="notes">
+						<ol>
+							<li>contraindre phase au sol into zero dynamique</li>
+							<li>exigence d'invariance hybride</li>
+							<li>relaxer periodicite</li>
+							<li>into zero dynamique viable</li>
+							<li> Montrer difference qvec Westervelt </li>
+						</ol>
+					</aside>
 				</section>
 
 				<section> 
@@ -416,6 +499,14 @@
 							</ul> 
 						</div>
 					</div> 
+					<aside class="notes">
+						<ol>
+							<li>Avant optimisation methode naive</li>
+							<li>contraindre le comportement radial a suivre SLIP</li>
+							<li>invariance en temps necessite chgt variable</li>
+							<li>pas suffisant pour viab</li>
+						</ol>
+					</aside>
 				</section>
 
 				<section>
