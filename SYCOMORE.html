@@ -27,32 +27,8 @@
 					<h3 style="text-align: center;"> Gabin Lembrez </h3>
 				</section>
 
-				<section>
-					<!-- <h2> Table des matières </h2> -->
-					<div style="font-size: 1.5em;font-weight: bold; text-align: left; margin-left: 20%; margin-right: 0%;">
-					<ol type="I">
-						<li>Contexte</li>
-						<li>Problématique</li>
-						<li>Résultats
-						<div style="font-size: 0.6em; text-align: left; margin-left: 10%;">
-							<ol type="i">
-								</br>
-								<nobr>
-								<li>Noyau de viabilité du pendule inverse</li>
-								<li>Noyau de viabilité du pendule sur ressort</li>
-								<li>Commande basée sur la viabilité</li>
-								<li>Extension par la théorie des contraintes virtuelles</li>
-								</nobr>
-							</ol>
-						</div>
-						</li>
-						<li>Prochaines étapes</li>
-					</ol> 
-					</div>
-				</section>
-
 				<section> 
-					<h1> CONTEXTE </h1>
+					<h1> CONTEXT </h1>
 				</section>
 
 				<section>
@@ -63,16 +39,16 @@
 						<div class='col' style="text-align: left;">
 						<h2> Motivations </h2>  
 						</br>
-							<p>La locomotion bipède du point de vue des êtres vivants :</p>
+							<p>Biped locomotion from the perspective of living organisms:</p>
 							<ul>
 								</br>
-								<li class="fragment"> Mouvements "fluides" et agiles  </li>
-								<li class="fragment"> Utilisation des couplages (<em>Yeadon, 2000</em>)  </li>
-								<li class="fragment"> Mobilisation de tous les effets dynamiques </li>
+								<li class="fragment"> Fluid and agile motions  </li>
+								<li class="fragment"> Use of couplings (<em>Yeadon, 2000</em>)  </li>
+								<li class="fragment"> Leveraging all the dynamic effects </li>
 								</br>
 							</ul> 
 							<div class="alert fragment" style="text-align: center;">
-							Quelles difficultés en robotique ?
+							How well does it transfer to robotics?
 							</div>
 						</div>
 					</div> 
@@ -165,13 +141,13 @@
 							</div>
 						</div>
 						<div class='col' style="text-align: left;">
-							<h2 class="fragment" data-fragment-index="1"> Etat de l'art </h2>
+							<h2 class="fragment" data-fragment-index="1"> State of the art </h2>
 							<ul>
 								</br>
-								<li class="fragment" data-fragment-index="1"> Modèles simples dérivés du pendule inverse (<em>Chen 2023</em>) </li>
-								<li class="fragment" data-fragment-index="2"> Optimisation de trajectoire et commande prédictive (<em>Tassa et al. 2012 </em>) </li>
-								<li class="fragment" data-fragment-index="3"> Contraintes virtuelles : stabilisation de trajectoires périodiques par linéarisation partielle (<em> Westervelt et al. 2003</em>)</li>
-								<li class="fragment" data-fragment-index="4"> Apprentissage par renforcement : émergence de comportements agiles  (<em>Radosavovic et al., 2024 </em>) </li>
+								<li class="fragment" data-fragment-index="1"> Simple models: template control, ZMP control (<em>Chen 2023</em>) </li>
+								<li class="fragment" data-fragment-index="2"> Online rtajectory optimization and MPC (<em>Tassa et al. 2012 </em>) </li>
+								<li class="fragment" data-fragment-index="3"> Limit cycle optimization with virtual constraints (<em> Westervelt et al. 2003</em>)</li>
+								<li class="fragment" data-fragment-index="4"> Reinforcement learning (PPO - TRPO) (<em>Radosavovic et al., 2024 </em>) </li>
 							</ul> 
 						</div>
 					</div> 
@@ -187,15 +163,14 @@
 				</section>
 
 				<section> 
-					<h2> Problématique </h2>
-					<h4 style="text-align: left;margin-left: 10%;font-size: 1.1em;">Concevoir un méthode de commande pour robots à jambes dynamiques </h4> 
+					<h2> What would the ideal method look like ? </h2>
 					<div style="font-size: 1.5em; text-align: left; margin-left: 20%; ">
 					<ol type="I">
 						</br>
-						<li class="fragment">Générale</li>
-						<li class="fragment">Mobilisant les effets dynamiques</li>
-						<li class="fragment">Basée modèle </li>
-						<li class="fragment">Interprétable</li>
+						<li class="fragment">General</li>
+						<li class="fragment">Leverages the intrinsic dynamics</li>
+						<li class="fragment">Model based</li>
+						<li class="fragment">Robust</li>
 					</ol> 
 					</div>
 				</section>
@@ -225,14 +200,14 @@
 							<img class="r-stretch" width="90%" src="media/img/viabilityDef.svg" /> 
 						</div>
 						<div class='col' style="text-align: left;font-size: 0.8em;">
-							<h2> Noyau de viabilité </h2>
+							<h2> Viability kernel </h2>
 							</br>
 							<div class="block">
-							<h4> Définition </h4>
-							<p>Le noyau de viabilité $\mathcal{V}$ est l'ensemble des états à partir desquels il existe une commande permettant d'éviter un ensemble d'états d'échecs $\mathcal{F}$ (<em>Wieber, 2008</em>).</p>
+							<h4> Definition </h4>
+							<p>The viability kernel $\mathcal{V}$ is the set of states from which there exists a strategy to avoid a set set of failure states  $\mathcal{F}$ (<em>Wieber, 2008</em>).</p>
 							\[
 							\begin{align}
-								\mathcal{F} &= \left\{ x\in\mathcal{X} \; | \; \textit{Le robot est au sol} \; \right\} \\
+								\mathcal{F} &= \left\{ x\in\mathcal{X} \; | \; \textit{The robot has fallen} \; \right\} \\
 								\mathcal{V} &= \left\{ x(0)\in\mathcal{X} \; | \; \forall t>0, \exists u(t)\in\mathcal{U}: x(t)\notin \mathcal{F} \right\} 
 							\end{align}
 							\]
@@ -248,45 +223,45 @@
 				
 
 				<section> 
-					<h1> RESULTATS </h1>
+					<h1> Results </h1>
 				</section>
 
 				<section data-auto-animate> 
-					<h2> Noyau de viabilité du pendule </h2>
+					<h2> Viability kernel of the inverted pendulum </h2>
 					<div class='multiCol'>
 						<div class='col'>
 							<img class="r-stretch" width="60%" src="media/img/pendulum.svg" /> 
 						</div>
 						<div class='col'>
-							<h4> Modélisation </h4>
+							<h4> Model </h4>
 							<ul>
 								</br>
-								<li class="fragment"> Représentation minimaliste d'un pas </li>
-								<li class="fragment"> Le couple transmissible est supposé limité <strong>$$u<\bar u$$</strong> </li>
-								<li class="fragment"> L'actionneur a-t'il assez de puissance pour compléter le pas avant que le pendule ne tombe ? </li>
+								<li class="fragment"> Minimalistic representation of a step </li>
+								<li class="fragment"> The ankle torque is limited <strong>$$u<\bar u$$</strong> </li>
+								<li class="fragment"> Is the actuator powerful enough to complete the step before the pendulum falls over? </li>
 							</ul> 
 						</div>
 					</div> 
 				</section>
 
 				<section data-auto-animate> 
-					<h2> Noyau de viabilité du pendule </h2>
+					<h2> Viability kernel of the inverted pendulum </h2>
 					<div class='multiCol'>
 						<div class='col'>
 							<img class="r-stretch" width="100%" src="media/img/viabilityPendulum.svg" /> 
 						</div>
 						<div class='col' style="text-align: left;">
 							<div class="block">
-							<h4> Théorème : </h4>
-								$x=(\theta,\dot{\theta})\in \mathcal{V} $ si l'une des conditions suivantes est vérifiée :
+							<h4> Theorem: </h4>
+								$x=(\theta,\dot{\theta})\in \mathcal{V} $ if one of the following requirement is <meta>:
 								<ol style="margin-left: 15%; font-size: 0.8em;">
 									<li style="margin-top: 0.5em;margin-bottom: 0.5em;">
 										$\dot{\theta}>0$ et $\bar{u}>1$
 									</li> 
-									<li  style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\dot{\theta}<0$ et $\bar{u}\theta > \frac{l}{2g}\dot{\theta}^2+\sin\theta$ </li>
-									<li style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\dot{\theta}>0$, $\bar{u}<1$ et $\arccos(\bar{u})<\theta$ </li>
-									<li style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\dot{\theta}<0$, $\bar{u}<1$ et $\arccos(\bar{u})>\theta$  </li>
-									<li style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\bar{u}<1$, $sign(\dot{\theta})\arccos(\bar{u}) < sign(\dot{\theta})\theta$ et 
+									<li  style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\dot{\theta}<0$ and $\bar{u}\theta > \frac{l}{2g}\dot{\theta}^2+\sin\theta$ </li>
+									<li style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\dot{\theta}>0$, $\bar{u}<1$ and $\arccos(\bar{u})<\theta$ </li>
+									<li style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\dot{\theta}<0$, $\bar{u}<1$ and $\arccos(\bar{u})>\theta$  </li>
+									<li style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\bar{u}<1$, $sign(\dot{\theta})\arccos(\bar{u}) < sign(\dot{\theta})\theta$ and 
 									</li>
 									\[
 										\bar{u} > \frac{\sqrt{1-\bar{u}^2}-\frac{l}{2g}\dot{\theta}^2 - \sin\theta}{\arccos (\bar{u})- \theta}
@@ -305,7 +280,7 @@
 				</section>
 
 				<section data-auto-animate> 
-					<h2> Viabilité du pendule sur ressort </h2>
+					<h2> Viability of the spring loaded inverted pendulum </h2>
 					<img class="r-stretch" width="90%" src="media/img/SLIP.svg" /> 
 					<aside class="notes">
 						Système plus riche très utilisé en bioméca pour modéliser la course + pas intégrable analytiquement
@@ -313,18 +288,18 @@
 				</section>
 
 				<section data-auto-animate> 
-					<h2> Viabilité du pendule sur ressort </h2>
+					<h2> Viability of the spring loaded inverted pendulum </h2>
 					<div class='multiCol'>
 						<div class='col'>
 							<img class="r-stretch" width="100%" src="media/img/SLIPviability.svg" /> 
 						</div>
 						<div class='col'>
-							<h4> Mise en forme du problème </h4>
+							<h4> The problem </h4>
 							<ul>
 								</br>
-								<li class="fragment" data-fragment-index="1"> La viabilité a du sens vis à vis de la dynamique des actionneurs </li>
-								<li class="fragment" data-fragment-index="2"> On choisit une modélisation simple </li>
-								<li class="fragment" data-fragment-index="3"> La viabilité est approchée à partir d'une contrainte de hauteur minimale </li>
+								<li class="fragment" data-fragment-index="1"> Viability makes sense if actuator dynamics is known </li>
+								<li class="fragment" data-fragment-index="2"> We choose the simplest possible model </li>
+								<li class="fragment" data-fragment-index="3"> Viability is approximated from a minimal height constraint. </li>
 								</br>
 							</ul> 
 							<div class="block fragment" data-fragment-index="3">
