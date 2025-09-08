@@ -27,19 +27,17 @@
 					<h3 style="text-align: center;"> Gabin Lembrez </h3>
 				</section>
 
-				<section> 
-					<h1> CONTEXT </h1>
-				</section>
 
-				<section>
+				<section class="data-auto-animate">
 					<div class='multiCol'>
 						<div class='col'>
-							<img class="r-stretch" width="100%" src="media/img/sports_dynamics.svg" /> 
+							<img class="r-stretch fragment" data-fragment-index="1" width="100%" src="media/img/sports_dynamics.svg" /> 
 						</div>
 						<div class='col' style="text-align: left;">
-						<h2> Motivations </h2>  
+						<!-- <h2 class="data-auto-animate"> Motivations </h2>   -->
+					<h2 data-fragment-index="1" class="fragment"> Motivations </h2>
 						</br>
-							<p>Biped locomotion from the perspective of living organisms:</p>
+							<p class="fragment">Biped locomotion from the perspective of living organisms:</p>
 							<ul>
 								</br>
 								<li class="fragment"> Fluid and agile motions  </li>
@@ -60,75 +58,6 @@
 					</aside>
 
 				</section>
-
-				<!-- <section>
-					<h2> Etat de l'art </h2>  
-					<div class='multiCol'>
-						<div class='col'>
-							<img class="r-stretch" width="70%" src="media/img/simpleMethods.svg" /> 
-						</div>
-						<div class='col'>
-							<h4> Modèles simplifiés </h4>
-							<ul>
-								</br>
-								<li> Basés sur des dérivés du <em>pendule inverse</em>  </li>
-								</br>
-								<li> Permet des comportements robustes </li>
-								</br>
-								<li> Absorbe les effets dynamiques dans le modèle simple </li>
-								</br>
-								<li> Se généralise mal à haute vitesse </li>
-								</br>
-							</ul> 
-						</div>
-					</div> 
-				</section>
-
-				<section>
-					<h2> Etat de l'art </h2>  
-					<div class='multiCol'>
-						<div class='col'>
-							<img class="r-stretch" width="80%" src="media/img/wholeBody.svg" /> 
-						</div>
-						<div class='col'>
-							<h4> Méthodes "corps complet" </h4>
-							<ul>
-								</br>
-								<li> Résoudre un problème de commande optimale en temps réel (<em> Tassa et al., 2012 </em>) </li>
-								</br>
-								<li> Mobilise la dynamique complète </li>
-								</br>
-								<li> Optimise les contacts  </li>
-								</br>
-								<li> Requiert une importante puissance de calcul </li>
-								</br>
-							</ul> 
-						</div>
-					</div> 
-				</section>
-
-				<section>
-					<h2> Etat de l'art </h2>  
-					<div class='multiCol'>
-						<div class='col'>
-							<img class="r-stretch" width="100%" src="media/img/IA.svg" /> 
-						</div>
-						<div class='col'>
-							<h4> Méthodes "IA" </h4>
-							<ul>
-								</br>
-								<li> Approche "model-free" </li>
-								</br>
-								<li> Mobilise la dynamique complète </li>
-								</br>
-								<li> Emergence des comportements dynamiques recherchés (<em> Radosavovic et al., 2024 </em>) </li>
-								</br>
-								<li> Défauts des méthodes basées sur des données </li>
-								</br>
-							</ul> 
-						</div>
-					</div> 
-				</section> -->
 
 				<section>
 					<div class='multiCol'>
@@ -162,37 +91,32 @@
 					</aside>
 				</section>
 
-				<section> 
-					<h2> What would the ideal method look like ? </h2>
-					<div style="font-size: 1.5em; text-align: left; margin-left: 20%; ">
-					<ol type="I">
-						</br>
-						<li class="fragment">General</li>
-						<li class="fragment">Leverages the intrinsic dynamics</li>
-						<li class="fragment">Model based</li>
-						<li class="fragment">Robust</li>
-					</ol> 
+
+
+				
+
+				<section class="data-auto-animate">
+					<div class="multiCol">
+						<div class="col">
+							<div class="r-stack">
+							<img class="current-visible" data-fragment-index="0" width="50%" src="media/img/humanoid.svg" /> 
+							</div>
+						</div>
+						<div class="col">
+							<h2 style="margin-left: 0%; margin-bottom: 2em; font-size: 1.7em"> How to use the intrinsic dynamics to execute the next step ? </h2>
+							<ul>
+								<li> How to reduce the order of the model without losing rich dynamic effects ? </li>
+								<li> How to operate the reduced order model safely ? </li>
+							</ul>
+						</div>
 					</div>
+					
 				</section>
 
-				<section>
-					<h2 style="margin-left: 0%;text-align: center;"> Notre approche </h2>
-					<div class="r-stack">
-					<img class="fragment current-visible" data-fragment-index="0" width="75%" src="media/img/approche1.svg" /> 
-					<img class="fragment current-visible" data-fragment-index="1" width="75%" src="media/img/approche2.svg" /> 
-					<img class="fragment current-visible" data-fragment-index="2" width="75%" src="media/img/approche.svg" /> 
-					</div>
-
-					<aside class="notes">
-						On part de systèmes simples : ... définir stabilité au sens de "se déplacer sans tomber"
-						<ul>
-							<li> on complexifie avec contraintes </li>
-							<li> objectif: général et 3D </li>
-							<li> enrichir dyna = augmenter potentiel de prop </li>
-							<li> capacité de ne pas tomber au regard de dynamiques plus simples</li>
-						</ul>
-					</aside>
+				<section class="data-auto-animate">
+					<img width="75%" src="media/img/SYCOMORE_abstract.svg" />
 				</section>
+
 
 				<section> 
 					<div class='multiCol'>
@@ -220,6 +144,15 @@
 					</aside>
 				</section>
 
+				<section>
+					<div class="r-stack">
+					<img class="current-visible" width="75%" src="media/img/SLIP_catppuccin-2.svg" />
+					<img class="fragment current-visible" width="75%" src="media/img/SLIP_catppuccin-3.svg" />
+					<img class="fragment current-visible" width="75%" src="media/img/SLIP_catppuccin-4.svg" />
+					<img class="fragment current-visible" width="75%" src="media/img/SLIP_catppuccin-5.svg" />
+					<img class="fragment current-visible" width="75%" src="media/img/SLIP_catppuccin.svg" />
+					</div>
+				</section>
 				
 
 				<section> 
