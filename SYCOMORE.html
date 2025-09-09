@@ -24,7 +24,7 @@
 					<h1 style="font-size: 2.5em;"> Using intrinsic dynamics to generate and control agile motions in legged robots </h1>
 					</br>
 					</br>
-					<h3 style="text-align: center;"> Gabin Lembrez </h3>
+					<h3 style="text-align: center; color:#94e2d5"> Gabin Lembrez </h3>
 				</section>
 
 
@@ -114,7 +114,12 @@
 				</section>
 
 				<section class="data-auto-animate">
-					<img width="75%" src="media/img/SYCOMORE_abstract.svg" />
+					<div class="r-stack">
+					<img class="current-visible" width="75%" src="media/img/SYCOMORE_abstract-1.svg" />
+					<img class="fragment current-visible" width="75%" src="media/img/SYCOMORE_abstract-2.svg" />
+					<img class="fragment current-visible" width="75%" src="media/img/SYCOMORE_abstract-3.svg" />
+					<img class="fragment current-visible" width="75%" src="media/img/SYCOMORE_abstract.svg" />
+					</div>
 				</section>
 
 
@@ -127,7 +132,7 @@
 							<h2> Viability kernel </h2>
 							</br>
 							<div class="block">
-							<h4> Definition </h4>
+							<h4 style="color:#94e2d5"> Definition </h4>
 							<p>The viability kernel $\mathcal{V}$ is the set of states from which there exists a strategy to avoid a set set of failure states  $\mathcal{F}$ (<em>Wieber, 2008</em>).</p>
 							\[
 							\begin{align}
@@ -161,7 +166,7 @@
 							<img class="r-stretch" width="100%" src="media/img/SLIPintegrable.svg" /> 
 						</div>
 						<div class='col'>
-							<h4> Approximation of stance dynamics </h4>
+							<h3> Approximation of stance dynamics </h3>
 							</br>
 							<div style="text-align: left;">
 							Under reasonable assumptions, stance dynamics is approximated by integrable spring-mass-damper dynamics (<em>Saranli et al., 2010</em>).
@@ -190,7 +195,7 @@
 							<video class="r-stretch" width="100%" src="media/video/userInput.mp4" /> 
 						</div>
 						<div class='col' >
-							<h4> Viability-based control </h4>
+							<h3> Viability-based control </h3>
 							<ul>
 								</br>
 								<li class="fragment"> Accomodates real-time user inputs </li>
@@ -218,62 +223,67 @@
 
 				
 
-
-
-				<section data-auto-animate> 
-					<h2> Extension with virtual constraints </h2>
-
-					<div class='multiCol'>
-						<div class='col'>
+				<section>
+					<div class="multiCol">
+						<div class="col">
 							<div class="r-stack">
-							<img class="fragment current-visible" data-fragment-index="0" width="100%" src="media/img/HZD.svg" /> 
-							<img class="fragment current-visible" data-fragment-index="1" width="100%" src="media/img/viabilityHZD.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="0" width="100%" src="media/img/HZD_prettier-1.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="1" width="100%" src="media/img/HZD_prettier-2.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/HZD_prettier-3.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/HZD_prettier-4.svg" /> 
+							<img class="fragment current-visible" data-fragment-index="5" width="100%" src="media/img/HZD_prettier-5.svg" /> 
+						    <video controls muted class="fragment current-visible" data-fragment-index="4" width="100%" src="media/video/three_links_walking.mp4" /> 
 							</div>
 						</div>
-						<div class='col' style="text-align: left;">
-							<p>
-							<strong>Goal : </strong> Constrain the system to exist on a restricted space using partial feedback linearization (<em> Westervelt et al., 2003 - Griffin et al., 2017 </em>)
-							</p>
+						<div class="col" style="text-align: left;">
+						<h3> Extension with virtual constraints </h3>
+						<div class="r-stack">
+						<div class="block_flat fragment current-visible" data-fragment-index="0">
+						<strong>Goal : </strong> Constrain the system to exist on a restricted space using partial feedback linearization (<em> Westervelt et al., 2003 - Griffin et al., 2017 </em>)
+						</div>
+						<div class="fragment current-visible" data-fragment-index="1"> 
+							The <em>zero-dynamics</em> manifold associated with holonomic constraint $y(q)=0$
+							\[
+								\mathcal{Z} = \left\{ x\in T\mathcal{Q} \; | \; y(q) = 0,\; \dot y (q,\dot q) = 0 \right\}
+							\]
+							Feedback linearization controller:
+							\[
+								u = \left( L_gL_fy \right)^{-1} \left( v - L^2_f y \right)
+							\]
+						</div>
+						<div class="fragment current-visible" data-fragment-index="2"> 
+							Touch-down and lift-off occur when crossing the <em>impact surface</em>: $\mathcal{S}$. The hybrid zero-dynamics condition: 
+							\[
+								\mathcal{Z} \subset \mathcal{S} \cap \mathcal{Z}
+							\]
+						</div>
+						<div class="fragment current-visible" data-fragment-index="3"> 
+							Parametrize the constraints to find a periodic <em>limit-cycle</em> which minimizes 
+							\[
+								\frac{1}{d} \int_0^T u^2 dt =  \frac{energy}{distance}
+							\]
+							Subject to the hybrid condition and constraints on the actuators.
+						</div>
+						<div class="fragment current-visible" data-fragment-index="4"> 
+							Parametrize the constraints to find a periodic <em>limit-cycle</em> which minimizes 
+							\[
+								\frac{1}{d} \int_0^T u^2 dt =  \frac{energy}{distance}
+							\]
+							Subject to the hybrid condition and constraints on the actuators.
+						</div>
+						<div class="fragment current-visible" data-fragment-index="5"> 
+							<em> My Proposition:</em> 
 							</br>
-							<div class="r-stack">
-							<div class="block_flat fragment" data-fragment-index="0">
-							Virtual constraints design :
-							\[
-								\min \frac{energy}{distance}
-							\]
-							subject to :
-							\[
-								\begin{matrix}
-									|u|  < \bar u \\
-									z(T) = z(0)
-								\end{matrix}
-							\]
-							</div>
-							<div class="block_flat fragment" data-fragment-index="1">
-							Virtual constraints design :
-							\[
-								\min \frac{energy}{distance}
-							\]
-							subject to :
-							\[
-								\begin{matrix}
-									|u|  < \bar u \\
-									z \in \mathcal{V}
-								\end{matrix}
-							\]
-							</div>
-							</div>
+							</br> 
+							<ol>
+								<li> Find constraints with good dynamic behavior </li>
+								<li> Control the actuated zero dynamics to maintain viability </li>
+							</ol>
 						</div>
-					</div> 
-					<aside class="notes">
-						<ol>
-							<li>contraindre phase au sol into zero dynamique</li>
-							<li>exigence d'invariance hybride</li>
-							<li>relaxer periodicite</li>
-							<li>into zero dynamique viable</li>
-							<li> Montrer difference qvec Westervelt </li>
-						</ol>
-					</aside>
+						</div>
+
+						</div>
+					</div>
 				</section>
 
 
@@ -312,15 +322,45 @@
 				</section>
 
 				<section>
-					<h2> Viabilité du pendule inverse </h2>
-					<p style="text-align: left; margin-left: 10%;"> L'état initial $(\theta_0,\dot\theta_0)$ est viable s'il n'existe <strong>pas</strong> d'angle $\bar \theta \in [0;\pi/2]$ solution de : </p>
+					<h2> Inverted pendulum viability </h2>
+					<p style="text-align: left; margin-left: 10%;"> The initial state $(\theta_0,\dot\theta_0)$ is viable if  <strong>no</strong> angle $\bar \theta \in [0;\pi/2]$ is solution of: </p>
 					\[ mgl \sin\bar\theta = E_0 + \bar u (\bar\theta - \theta_0)  \]
 					<img class="r-stretch" width="100%" src="media/img/pendulumGeom.svg" /> 
+				</section>
+
+				<section data-auto-animate> 
+					<h2>Inverted pendulum viability </h2>
+					<div class='multiCol'>
+						<div class='col'>
+							<img class="r-stretch" width="100%" src="media/img/viabilityPendulum.svg" /> 
+						</div>
+						<div class='col' style="text-align: left;">
+							<div class="block">
+							<h4 style="color:#94e2d5"> Theorem : </h4>
+								$x=(\theta,\dot{\theta})\in \mathcal{V} $ if one of the following condition is met:
+								<ol style="margin-left: 15%; font-size: 0.8em;">
+									<li style="margin-top: 0.5em;margin-bottom: 0.5em;">
+										$\dot{\theta}>0$ and $\bar{u}>1$
+									</li> 
+									<li  style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\dot{\theta}<0$ and $\bar{u}\theta > \frac{l}{2g}\dot{\theta}^2+\sin\theta$ </li>
+									<li style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\dot{\theta}>0$, $\bar{u}<1$ and $\arccos(\bar{u})<\theta$ </li>
+									<li style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\dot{\theta}<0$, $\bar{u}<1$ and $\arccos(\bar{u})>\theta$  </li>
+									<li style="margin-top: 0.5em;margin-bottom: 0.5em;"> $\bar{u}<1$, $sign(\dot{\theta})\arccos(\bar{u}) < sign(\dot{\theta})\theta$ aria-expanded="" 
+									</li>
+									\[
+										\bar{u} > \frac{\sqrt{1-\bar{u}^2}-\frac{l}{2g}\dot{\theta}^2 - \sin\theta}{\arccos (\bar{u})- \theta}
+									\]
+									
+								</ol>
+						</div>
+						</div>
+					</div> 
 				</section>
 
 				<section>
 					<video controls muted class="r-stretch" width="100%" src="media/video/abstract_LEMBREZ.mp4" /> 
 				</section>
+
 
 
 
