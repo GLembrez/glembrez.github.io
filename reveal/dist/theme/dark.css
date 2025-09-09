@@ -402,6 +402,15 @@ div.block {
   height: 100%;  
 }
 
+div.block_flat {
+  border-radius: 25px;
+  background-color: #363a4f;
+  padding: 3%; 
+  width: 100%;
+  height: 100%;  
+  padding-bottom: 0%;
+}
+
 div.alert {
   border-radius: 25px;
   border: 5px solid var(--r-link-color-hover);
