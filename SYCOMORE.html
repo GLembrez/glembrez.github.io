@@ -21,14 +21,19 @@
 			<div class="slides">
 
 				<section> 
-					<h1 style="font-size: 2.5em;"> Using intrinsic dynamics to generate and control agile motions in legged robots </h1>
-					</br>
-					</br>
-					<h3 style="text-align: center; color:#94e2d5"> Gabin Lembrez </h3>
+					<div>
+					<h3 style="text-align: center; font-size: 2.2em;margin: 5%;padding: 2%;  margin-bottom:7%; background-color: #363a4f; border-radius: 0.25em;"> Using intrinsic dynamics to generate and control agile motion in legged robots </h3>
+					</div>
+					<h3 style="text-align: center; color:#94e2d5;padding: 0%; font-size: 1.1em;  margin-bottom:3%;"> Gabin Lembrez </h3>
+					<div style="text-align: center; padding: 0%;">
+						<p>Pedro Rodriguez-Ayerbe (L2S)</p>
+						<p>Olivier Bruneau (LURPA)</p>
+						<p>Maria Makarov (L2S)</p>
+					</div>
 				</section>
 
 
-				<section class="data-auto-animate">
+				<section>
 					<div class='multiCol'>
 						<div class='col'>
 							<img class="r-stretch fragment" data-fragment-index="1" width="100%" src="media/img/sports_dynamics.svg" /> 
@@ -95,7 +100,7 @@
 
 				
 
-				<section class="data-auto-animate">
+				<section>
 					<div class="multiCol">
 						<div class="col">
 							<div class="r-stack">
@@ -105,15 +110,15 @@
 						<div class="col">
 							<h2 style="margin-left: 0%; margin-bottom: 2em; font-size: 1.7em"> How to use the intrinsic dynamics to execute the next step ? </h2>
 							<ul>
-								<li> How to reduce the order of the model without losing rich dynamic effects ? </li>
-								<li> How to operate the reduced order model safely ? </li>
+								<li class="fragment"> How to reduce the order of the model without losing rich dynamic effects ? </li>
+								<li class="fragment"> How to operate the reduced order model safely ? </li>
 							</ul>
 						</div>
 					</div>
 					
 				</section>
 
-				<section class="data-auto-animate">
+				<section>
 					<div class="r-stack">
 					<img class="current-visible" width="75%" src="media/img/SYCOMORE_abstract-1.svg" />
 					<img class="fragment current-visible" width="75%" src="media/img/SYCOMORE_abstract-2.svg" />
@@ -133,7 +138,7 @@
 							</br>
 							<div class="block">
 							<h4 style="color:#94e2d5"> Definition </h4>
-							<p>The viability kernel $\mathcal{V}$ is the set of states from which there exists a strategy to avoid a set set of failure states  $\mathcal{F}$ (<em>Wieber, 2008</em>).</p>
+							<p>The viability kernel $\mathcal{V}$ is the set of states from which there exists a strategy to avoid a set of failure states  $\mathcal{F}$ (<em>Wieber, 2008</em>).</p>
 							\[
 							\begin{align}
 								\mathcal{F} &= \left\{ x\in\mathcal{X} \; | \; \textit{The robot has fallen} \; \right\} \\
@@ -188,7 +193,7 @@
 
 				</section>
 				
-				<section data-auto-animate> 
+				<section> 
 					<!-- <h2> Commande basée sur la viabilité </h2> -->
 					<div class='multiCol'>
 						<div class='col'>
@@ -374,7 +379,8 @@
 		<script src="reveal/plugin/math/math.js"></script>
 		<script>
 			Reveal.initialize({
-				transition: 'none',
+				transition: 'fade',
+				transitionSpeed: 'fast',
 				hash: true,
 				slideNumber: true,
 				width: 1920,
