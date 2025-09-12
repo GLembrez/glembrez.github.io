@@ -60,6 +60,6 @@ video {
     display: flex;
     flex-flow: column wrap;
     align-content: center;
-    justify-content: space-around;
+    justify-content: flex-start;
     background-color: transparent;
 }
