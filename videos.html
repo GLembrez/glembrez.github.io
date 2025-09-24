@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>demo</title>
     <link rel="stylesheet" href="style.css">
   </head>
@@ -14,25 +15,25 @@
           Classically, a legged robot is said to achieve stable locomotion if it converges toward a periodic <em>limit cycle</em>. For the simple hopper, this means achieving a constant velocity hopping gait. 
         </p>
         <div class="wrapper">
-        <video autoplay muted loop src="media/video/limit_cycle.mp4" /> 
+        <video autoplay muted loop src="media/video/limit_cycle.mp4" webkit-playsinline playsinline/> 
         </div>
         <p> 
           However, more complex motion such as changing the direction or velocity are non-periodic. For such motion, there might be none or several limit cycles and the classical approach no longer provides garantees that the robot will not fall over. 
         </p>
         <div class="wrapper">
-        <video autoplay muted loop src="media/video/noLimitCycle.mp4" /> 
+        <video autoplay muted loop src="media/video/noLimitCycle.mp4" webkit-playsinline playsinline/> 
         </div>
         <p> 
           Our approach consists in rendering a subset of the <em>viability kernel</em> invariant. Inside this set, the robot is garanteed to never fall. Controlling the robot consists in matching the desired velocity as close as possible under the constraint of remaining viable. The robot below is controlled using keyboard inputs (illustrated by the green arrow) to control the hopper in real time.
         </p>
         <div class="wrapper">
-        <video autoplay muted loop src="media/video/userInput.mp4" /> 
+        <video autoplay muted loop src="media/video/userInput.mp4" webkit-playsinline playsinline/> 
         </div>
         <p>
           No periodicity constraint is imposed. However, when the desired velocity is constant and the controller aims at minimizing the mechanical power outputed, limit-cycles naturally arise. 
         </p>
         <div class="wrapper">
-        <video autoplay muted loop src="media/video/walkingSpeed.mp4" /> 
+        <video autoplay muted loop src="media/video/walkingSpeed.mp4" webkit-playsinline playsinline/> 
         </div>
         <h1> Future works: extension with virtual constraints </h1>
         <p> 
@@ -50,13 +51,13 @@
           We start from a known limit cycle. This is done via a simple feedback, imposing a symmetric behaviour for the leg and a constant leaning angle of the torso. 
         </p>
         <div class="wrapper">
-        <video autoplay muted loop src="media/video/walker_simple.mp4" /> 
+        <video autoplay muted loop src="media/video/walker_simple.mp4" webkit-playsinline playsinline/> 
         </div>
         <p>
           Constraints between the legs and the torso are optimized to minimize the cost of transport (i.e. the energy cost of a step). This enables the emergence of <em>efficient motion</em>: in other words motion which exploits the passive dynamics at its maximum
         </p>
         <div class="wrapper">
-        <video autoplay muted loop src="media/video/walker_advanced.mp4" /> 
+        <video autoplay muted loop src="media/video/walker_advanced.mp4" webkit-playsinline playsinline/> 
         </div>
         <h2> My proposition </h2>
         <p>
