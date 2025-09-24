@@ -10,37 +10,59 @@
   <body>
     <div class="flexContainer">
         <h1> Viability-based control of a planar hopper </h1>
-
         <p> 
-          Classically, a legged robot is said to achieve stable locomotion if it converges toward a periodic limit cycle. For the simple hopper, this means achieving a constant velocity hopping gait. 
+          Classically, a legged robot is said to achieve stable locomotion if it converges toward a periodic <em>limit cycle</em>. For the simple hopper, this means achieving a constant velocity hopping gait. 
         </p>
         <div class="wrapper">
         <video autoplay muted loop src="media/video/limit_cycle.mp4" /> 
         </div>
         <p> 
-          However, more complex motion such as changing the direction of velocity of the gait can are by definition non-periodic. For such motion, there might be none or several limit cycles to converge toward and the classical approach no longer provides garantees that the robot will not fall over. 
+          However, more complex motion such as changing the direction or velocity are non-periodic. For such motion, there might be none or several limit cycles and the classical approach no longer provides garantees that the robot will not fall over. 
         </p>
         <div class="wrapper">
         <video autoplay muted loop src="media/video/noLimitCycle.mp4" /> 
         </div>
         <p> 
-          Our approach consists in rendering a subset of the viability kernel invariant. Inside this set, the robot is garanteed to never fall. Controlling the robot bocomes matching the desired velocity as close as possible while remaining viable. The robot below is controlled using keyboard inputs (illustrated by the green arrow) to control the hopper in real time. Despite rapid unknown changes of direction, the robot is garanteed to not fall.  
+          Our approach consists in rendering a subset of the <em>viability kernel</em> invariant. Inside this set, the robot is garanteed to never fall. Controlling the robot consists in matching the desired velocity as close as possible under the constraint of remaining viable. The robot below is controlled using keyboard inputs (illustrated by the green arrow) to control the hopper in real time.
         </p>
         <div class="wrapper">
         <video autoplay muted loop src="media/video/userInput.mp4" /> 
         </div>
         <p>
-
+          No periodicity constraint is imposed. However, when the desired velocity is constant and the controller aims at minimizing the mechanical power outputed, limit-cycles naturally arise. 
         </p>
         <div class="wrapper">
         <video autoplay muted loop src="media/video/walkingSpeed.mp4" /> 
         </div>
+        <h1> Future works: extension with virtual constraints </h1>
+        <h2> The hybrid zero dynamics framework </h2>
+        <p>
+          Virtual constraints can be imposed on a robot using the available actuators. Formally, it consists in rendering a low dimension subset of the state space invariant via partial feedback linearization. In addition, the system must behave nicely at impact, which is modelled as crossing a surface.
+        </p>
+        <div class="wrapper">
+          <img src="media/img/HZD_prettier-4.svg"/>
+        </div>
+        <p>
+          We start from a known limit cycle. This is done via a simple feedback, imposing a symmetric behaviour for the leg and a constant leaning angle of the torso. 
+        </p>
         <div class="wrapper">
         <video autoplay muted loop src="media/video/walker_simple.mp4" /> 
         </div>
+        <p>
+          Constraints between the legs and the torso are optimized to minimize the cost of transport (i.e. the energy cost of a step). This enables the emergence of <em>efficient motion</em>: in other words motion which exploits the passive dynamics at its maximum
+        </p>
         <div class="wrapper">
         <video autoplay muted loop src="media/video/walker_advanced.mp4" /> 
         </div>
+        <h2> My proposition </h2>
+        <p>
+          I propose to build from the hybrid zero dynamics theory. Instead of designing a limit cycle at the zero dynamics level, we instead let the zero dynamics exist inside a set contained in the viability kernel.
+        </p>
+        <div class="wrapper">
+          <img src="media/img/HZD_prettier-5.svg"/>
+        </div>
+        <h2> Rerefence </h2>
+        <p style="font-style: italic;"> Westervelt, Eric R., Jessy W. Grizzle, Christine Chevallereau, Jun Ho Choi, and Benjamin Morris. Feedback control of dynamic bipedal robot locomotion. CRC press, 2018. </p>
     </div>
   </body>
 </html>

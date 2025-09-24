@@ -35,8 +35,18 @@ a:hover {
     color: #24273a;
 }
 
+em {
+    color:#c6a0f6;
+    font-weight: bold;
+}
+
 h1 {
     font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 p {
@@ -78,3 +88,10 @@ video {
     max-width: 1300px; 
     margin:auto;
 }
+
+
+img {
+  display: block;
+  margin: auto;
+  width: 70%;
+} 
