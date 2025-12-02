@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>BLS</title>
+
+		<link rel="stylesheet" href="reveal/dist/reset.css">
+		<link rel="stylesheet" href="reveal/dist/reveal.css">
+		<link rel="stylesheet" href="reveal/dist/theme/dark.css">
+		<link rel="stylesheet" href="reveal/plugin/highlight/monokai.css">
+
+	</head>
+
+
+	<body>
+
+
+		<div class="reveal">
+			<div class="slides">
+
+                <section>
+
+                </section>
+
+                <section>
+					<div class='multiCol'>
+						<div class='col'>
+                            <div>
+							<video autoplay muted loop width="100%" webkit-playsinline playsinline src="media/video/hopperTest.mp4" /> 	
+                            </div>
+                            <div>
+							<video autoplay muted loop width="83%" webkit-playsinline playsinline src="media/video/walker_simple.mp4" /> 	
+                            </div>
+						</div>
+
+						<div class='col' style="text-align: left;">
+					<h2 data-fragment-index="1" class="fragment"> Mon travail </h2>
+							<ul>
+								</br>
+								<li class="fragment"> Comprendre le mouvement à jambes  </li>
+								<li class="fragment"> Créer des mouvements agiles   </li>
+								<li class="fragment">  A partir de modèles mathématiques </li>
+								</br>
+							</ul> 
+						</div>
+					</div> 
+				</section>
+
+                <section>
+                    <div>
+					<h3 style="text-align: center; font-size: 2.2em;margin: 5%;padding: 2%;  margin-bottom:7%; background-color: #363a4f; border-radius: 0.25em;"> Pourquoi je ne tombe pas ? </h3>
+					</div>
+                </section>
+
+                <section>
+                    <div class='multiCol'>
+							<img class="current-visible" data-fragment-index="0" width="100%" src="media/img/humanoid.svg" /> 
+						
+
+						<div class='col' style="text-align: left;">
+						<!-- <h2 class="data-auto-animate"> Motivations </h2>   -->
+					<h3 data-fragment-index="1" class="fragment"> Etudier un humain c'est compliqué </h3>
+						<!-- </br> -->
+							<ul>
+								</br>
+								<li class="fragment"> Plein de façons de bouger (degrés de libertés)  </li>
+								<li class="fragment"> Contact avec le sol complexe à modéliser </li>
+								<li class="fragment">  Plein de couplages </li>
+								</br>
+							</ul> 
+						</div>
+					</div> 
+                </section>
+
+                <section>
+                    <div class='multiCol'>
+							<img class="current-visible" data-fragment-index="0" width="100%" src="media/img/humanoidPendulum.svg" /> 
+						<div class='col' style="text-align: left;">
+					<h3 data-fragment-index="1" class="fragment"> Vu de loin, le problème est simple </h3>
+						<!-- </br> -->
+							<ul>
+								</br>
+								<li class="fragment"> Un humain = de la masse qui peut basculer d'avant en arrière </li>
+								<li class="fragment"> On peut voir le contact avec le sol comme une cheville. </li>
+								<li class="fragment">  On obtient un pendule inverse ! </li>
+								</br>
+							</ul> 
+						</div>
+					</div> 
+                </section>
+
+                <section>
+                    <video autoplay muted loop width="100%" webkit-playsinline playsinline src="media/video/InvertedPendulumDissipative.mp4" /> 	
+                </section>
+
+			</div>
+		</div>
+
+		<script src="reveal/dist/reveal.js"></script>
+		<script src="reveal/plugin/notes/notes.js"></script>
+		<script src="reveal/plugin/markdown/markdown.js"></script>
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script>
+			Reveal.initialize({
+				transition: 'fade',
+				transitionSpeed: 'fast',
+				hash: true,
+				slideNumber: true,
+				width: 1920,
+            	height: 1080,
+  				autoPlayMedia: true,
+				mathjax2: {
+					config: 'TeX-AMS_HTML-full',
+					TeX: {
+						Macros: {
+							R: '\\mathbb{R}',
+							set: [ '\\left\\{#1 \\; ; \\; #2\\right\\}', 2 ]
+						}
+					}
+				},
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.MathJax2  ]
+			});
+		</script>
+	</body>
+</html>
