@@ -455,14 +455,15 @@ li:not(:last-of-type) {
   --r-bold-color: #c6a0f6;
   --r-italic-color: #f5bde6;
   --r-inline-code-color: #a6da95;
-  --r-list-bullet-color: #91d7e3;
+  --r-list-bullet-color: #c6a0f6;
 }
 
 .reveal strong, .reveal b {
   color: var(--r-bold-color);
 }
 .reveal em, .reveal blockquote {
-  color: var(--r-italic-color);
+  /* color: var(--r-italic-color); */
+  color: #ffff00 ;
 }
 .reveal code {
   color: var(--r-inline-code-color);
