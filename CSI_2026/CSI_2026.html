@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>CSI 2026</title>
+
+	<link rel="stylesheet" href="../reveal/dist/reset.css">
+	<link rel="stylesheet" href="../reveal/dist/reveal.css">
+	<link rel="stylesheet" href="../reveal/dist/theme/dark.css">
+	<link rel="stylesheet" href="../reveal/plugin/highlight/monokai.css">
+
+</head>
+
+
+<body>
+
+
+<div class="reveal">
+<div class="slides">
+
+	<section>
+
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col">
+	<div class="r-stack">
+		<img  data-fragment-index="0" width="100%" src="media/img/three_links.svg" /> 
+	</div>
+	</div>
+
+	<div class='col' style="text-align: left;">
+		<h3> Contraintes virtuelles pour un robot marcheur </h3>
+		<ul>
+		</br>
+		<li class="fragment" data-fragment-index="1"> <strong>Hypothèses :</strong> robot planaire, $n$ DDLs, $n-1$ actionneurs </li>
+		<li class="fragment" data-fragment-index="2"> <strong>Variable de phase:</strong> 
+		$$ s = \frac{\theta - \theta_i}{\theta_f - \theta_i} \in [0,1] $$
+		</li>
+		<li class="fragment" data-fragment-index="3">  $n-1$ <strong>contraintes virtuelles </strong> de la forme $$ y_i(q) = q_i - h_i(s,\alpha) $$ </li>
+		</ul> 
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col">
+	<div class="r-stack">
+		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/HZD_2.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/HZD_1.svg" /> 
+		<img class="fragment" data-fragment-index="3" width="100%" src="media/img/HZD.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Théorie de la zéro-dynamique hybride </h3>
+		<ul>
+		</br>
+		<li class="current visible" data-fragment-index="1"> Contrôleur par linéarisation partielle $y(q) = 0$ rendant $\mathcal{Z}$ invariant</li>
+		<li class="fragment" data-fragment-index="2"> Condition d'existence:
+			$$ \Delta (\mathcal{Z}\cap \mathcal{S})\subset\mathcal{Z} $$
+		</li>
+		<li class="fragment" data-fragment-index="3">  Méthode limitée à la stabilisation d'un mouvement périodique. </li>
+		</ul> 
+
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col">
+	<div class="r-stack">
+		<img class="fragment current-visible" data-fragment-index="1" width="100%" src="media/img/VZD_2.svg" /> 
+		<img class="fragment" data-fragment-index="2" width="100%" src="media/img/VZD_1.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Notre approche : </h3>
+		<ul>
+		</br>
+		<li class="current visible" data-fragment-index="1"> Relaxer le besoin de périodicité pour accomoder des mouvements complexes</li>
+		<li class="fragment" data-fragment-index="2"> Choisir $y_{k+1}$ en ligne qui satisfasse:
+			$$ \Delta (\mathcal{Z}_k\cap \mathcal{S})\subset\mathcal{Z}_{k+1} $$
+		</li>
+		<li class="fragment" data-fragment-index="3">  Garantir que le robot est capable de compléter un pas : <em>condition de viabilité</em> </li>
+		</ul> 
+
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col">
+		<img  width="100%" src="media/img/viabilityTheorem_1.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Portrait de phase de la zéro-dynamique </h3>
+		<p> $$ \epsilon (\xi_1, \xi_2) = \frac{1}{2}\xi_2^2 - \int_{\xi_1^-}^{\xi_1} \frac{\kappa_2 (\xi)}{\kappa_1 (\xi)} d\xi $$ </p>
+		<ul>
+		</br>
+		<li class="current visible" data-fragment-index="1"> $\epsilon(\xi_1,\xi_2)$ est conservé par la zéro-dynamique.</li>
+		<li class="fragment" data-fragment-index="2"> Le portrait de phase ressemble à celui d'un <em>pendule inverse</em>
+		</li>
+		</ul> 
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col">
+		<img  width="100%" src="media/img/viabilityTheorem_2.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Condition de viabilité </h3>
+		<br/>
+		<div class="block">
+		<h4> Théorème </h4>
+		<p> Il existe $\alpha<0$ tel que un pas commençant à $z^+ = (\xi_1^+,\xi_2^+)$ est viable si:
+		\[
+		\alpha (\xi_1^+-\xi_1^*) < \xi_2^+ < \xi_2^{sup} 
+		\]
+		où $\xi_2^{sup}$ limite l'énergie de la zéro dynamique et $\xi_1^*$ est la phase au moment où l'énergie potentielle est maximale.
+		 </p>
+		</div>
+
+	</div>
+	</div>
+	</section>
+
+	<section>
+		<h3> Résultat: marche à vitesse variable </h3>
+		<video src="media/video/three_links_walking.mp4" autoplay loop/>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/constraint.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/actuator_VZD.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Analyse : </h3>
+		<ul>
+		</br>
+		<li class="current-visible" data-fragment-index="1"> Un seul paramètre $p$ par contrainte (position à $s=1$). On optimise en ligne 
+			$$
+				\begin{matrix} \min & p \\ \text{s.t.} & z^+ \in \mathcal{V} \end{matrix}
+			$$
+		</li>
+		<li class="fragment" data-fragment-index="2">  Les trajectoires obtenues sont viables du point de vue de la zéro dynamique, mais rien ne contraint l' <em>efficacité énergétique</em></li>
+		</ul> 
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col">
+		<img  width="100%" src="media/img/hopper.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Un robot conservatif non-linéaire </h3>
+		<ul>
+		</br>
+		<li> Un modèle efficace pour décrire la locomotion à jambe. </li>
+		<li class="fragment" data-fragment-index="2"> Hypothèse : jambe sans masse
+		</li>
+		<li class="fragment" data-fragment-index="3"> Dynamique hybride: 
+			$$ 
+				\left\{ \begin{matrix} \dot{x} = f_i(x) & x \in T\mathcal{Q} \\ x^+ = \Delta_i (x^-) & x^- \in \mathcal{S}_i \end{matrix} \right. 
+			$$
+		</li>
+		</ul>
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class="fragment current-visible" data-fragment-index="1" width="100%" src="media/img/poincare_0.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/poincare.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/poincare_2.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Section de Poincaré : </h3>
+		<ul>
+		</br>
+		<li> surface $\mathcal{S}$ de dimension $n-1$ non-transverse au flot $x(t)$</li>
+		<li class="fragment" data-fragment-index="2"> Application de premier retour $$P:\mathcal{S}\rightarrow \mathcal{S}$$
+		</li>
+		<li class="fragment" data-fragment-index="3">  Une trajectoire périodique est un <em>point fixe</em> de $P$</li>
+		</ul> 
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class="fragment current-visible" data-fragment-index="1" width="100%" src="media/img/continuation.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/continuation_2.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/continuation_3.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Continuation d'une famille de mouvements : </h3>
+		<div class="r-stack">
+		<p class="fragment current-visible" data-fragment-index="1" style="margin-top: 1em;">Au voisinage d'une trajectoire périodique d'un robot conservatif, il existe d'autres trajectoires périodiques (<b>Raff & al. 2022</b>) dans les directions $v$ :
+		$$ \left( \frac{\partial P}{\partial x} - I\right)v = 0 $$	
+		Initialisation de la trajectoire suivant par $x_k + \alpha v$: 
+		$$ E(x_{k} + \alpha v) = E(x_k) + \delta E $$
+		</p>
+		<p class="fragment current-visible" data-fragment-index="2" style="margin-top: 1em;">
+			La trajectoire $x_{k+1}$ est obtenue comme un zéro de 
+			$$
+				\Theta (x) = \begin{bmatrix} P(x) - x \\ E(x) - E_{k+1} \end{bmatrix}
+			$$
+			Par une méthode type Newton-Raphson (Algorithme implémenté dans <code>CasADi</code>). On obtient une <em>variété de mouvements naturels</em> de dimension 2.
+		</p>
+		<div class="fragment" data-fragment-index="3" style="margin-top: 1em;">
+		<p style="margin-bottom: 1.5em">
+			L'intersection du NMM $\mathcal{M}$ avec la section de Poincaré $\mathcal{S}$ forme le <em>générateur</em> $\gamma$. 
+		</p>
+		<ol>
+		<li> $\gamma$ est une courbe (variété de dimension 1) paramétrée par $E$.</li>
+		<li> $\mathcal{M}$ est entièrement identifiée par $\gamma$</li>
+		</ol> 			
+	</div>
+		</div>
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/NMM.svg" /> 
+		<img class="fragment" data-fragment-index="3" width="100%" src="media/img/hide.svg" /> 
+		<video class="fragment" data-fragment-index="3" width="100%" src="media/video/NMM.mp4" autoplay loop /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Bilan : </h3>
+		<ol>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Les mouvements périodiques conservatifs sont  connectés. </li>
+		<li class="fragment" data-fragment-index="2"> On se ramène à l'exploration d'un espace de dimension 1 sans perte de richesse dynamique. </li>
+		<li class="fragment" data-fragment-index="3">  Une variété de mouvements naturels est un objet géométrique qui identifie une famille de comportements périodiques. </li>
+		</ol> 
+
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<div class="current-visible" data-fragment-index="1"> <video src="media/video/NMM_forward.mp4" autoplay loop /> </div>
+		<div class="fragment current-visible" data-fragment-index="2"> <video src="media/video/NMM_backward.mp4" autoplay loop /> </div>
+		<div class="fragment" data-fragment-index="3"> <video src="media/video/NMM_transition.mp4" autoplay loop /> </div>
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Et les mouvements complexes ?</h3>
+		<ul>
+		</br>
+		<li class="fragment" data-fragment-index="1"> On cherche à réaliser un <em>demi-tour</em> en dépensant le moins d'énergie possible </li>
+		<li class="fragment" data-fragment-index="2">  Il faut "coller" des variétés de mouvements naturels au maximum </li>
+		<li class="fragment" data-fragment-index="3"> Par la même technique, on trouve une variété de <em>transition</em>. </li>
+		</ul> 
+
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img  width="100%" src="media/img/hopper_actuated.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Actionneurs</h3>
+		<ul>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Les actionneurs sont placés en parallèle des ressorts </li>
+		<li class="fragment" data-fragment-index="2">  $u_f$ est actif en vol uniquement </li>
+		<li class="fragment" data-fragment-index="3"> $u_s$ est actif au sol uniquement </li>
+		</ul> 
+
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class="fragment" data-fragment-index="1" width="100%" src="media/img/generators.svg" /> 
+		<img class="fragment" data-fragment-index="3" width="100%" src="media/img/step1-1.svg" /> 
+		<img class="fragment" data-fragment-index="4" width="100%" src="media/img/step1-2.svg" /> 
+		<img class="fragment" data-fragment-index="5" width="100%" src="media/img/step2-1.svg" /> 
+		<img class="fragment" data-fragment-index="6" width="100%" src="media/img/step2-2.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Commande prédictive</h3>
+		<div class="r-stack">
+		<div class="fragment current-visible" data-fragment-index="1">
+		<p> Soit $\cal{M}$ la variété associée au mouvement désiré. $\Gamma$ est une interpolation du générateur de $\cal{M}$ par splines cubiques. La commande $u$ est choisie par commande prédictive hybride d'horizon 1 pas.</p>
+		</div>
+		<div class="fragment" data-fragment-index="2">
+		\[
+			\begin{align}
+				 \min_u &\quad \sum_{k=0}^N \| u_k \|_R^2 \\
+				\text{s.t.} &\quad \dot{x}_{k} = f(x_k,u_{k}) \\
+				& \quad e_i(x(t_i^-)) = 0 \\
+				& \quad x(t_i^+) =  h_i(x(t_i^-)) \\
+				& \quad  \Gamma(E(x_N)) = 0.
+			\end{align}
+		\]
+		</div>
+		</div>
+
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img src="media/img/control.svg" width="100%" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Résultat : </h3>
+		<ol>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Excitation de la forme 
+			$$ A \cos(\omega t + \phi) $$ </li>
+		<li class="fragment" data-fragment-index="2"> Faible amplitude. </li>
+		<li class="fragment" data-fragment-index="3">  Généralisation de la notion de "mode" dans le cas non-linéaire. </li>
+		</ol> 
+
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<video src="media/video/NMM_actuated.mp4" autoplay loop /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Résultat : </h3>
+		<ol>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Le mouvement est non-périodique. </li>
+		<li class="fragment" data-fragment-index="2"> La dépense d'énergie est minimisée par proximité avec des "modes" conservatifs </li>
+		<li class="fragment" data-fragment-index="3">  La démarche proposée est générale et ne nécessite pas de simplification de la dynamique pour des robots plus complexes. </li>
+		</ol> 
+
+	</div>
+	</div>
+	</section>
+
+	<!-- <section>
+	<div class='multiCol'>
+	<div class="col r-stack">
+		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/humanoid.svg" /> 
+		<img class="fragment" data-fragment-index="2" width="100%" src="media/img/humanoidPendulum.svg" /> 
+		<img class="fragment" data-fragment-index="3" width="100%" src="media/img/humanoidSLIP.svg" /> 
+		</div>
+	<div class='col' style="text-align: left;">
+	<h3 data-fragment-index="0" class="current-visible"> Vu de loin, le problème est simple </h3>
+		<ul>
+		</br>
+		<li class="current-visible" data-fragment-index="1"> Un humain = de la masse qui peut basculer d'avant en arrière </li>
+		<li class="fragment" data-fragment-index="2"> On le modélise par un <em>pendule inverse</em>  </li>
+		<li class="fragment" data-fragment-index="3">  Rôle d'une jambe : <em>ressort</em>  </li>
+		</br>
+		</ul> 
+	</div>
+	</div> 
+	</section> -->
+
+
+
+</div>
+</div>
+
+	<script src="../reveal/dist/reveal.js"></script>
+	<script src="../reveal/plugin/notes/notes.js"></script>
+	<script src="../reveal/plugin/markdown/markdown.js"></script>
+	<script src="../reveal/plugin/highlight/highlight.js"></script>
+	<script src="../reveal/plugin/math/math.js"></script>
+	<script>
+		Reveal.initialize({
+			transition: 'fade',
+			transitionSpeed: 'fast',
+			hash: true,
+			slideNumber: true,
+			width: 1920,
+			height: 1080,
+			autoPlayMedia: true,
+			mathjax2: {
+				config: 'TeX-AMS_HTML-full',
+				TeX: {
+					Macros: {
+						R: '\\mathbb{R}',
+						set: [ '\\left\\{#1 \\; ; \\; #2\\right\\}', 2 ]
+					}
+				}
+			},
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.MathJax2  ]
+		});
+	</script>
+
+</body>
+</html>

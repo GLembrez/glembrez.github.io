@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>SYCOMORE</title>
+
+	<link rel="stylesheet" href="../reveal/dist/reset.css">
+	<link rel="stylesheet" href="../reveal/dist/reveal.css">
+	<link rel="stylesheet" href="../reveal/dist/theme/dark.css">
+	<link rel="stylesheet" href="../reveal/plugin/highlight/monokai.css">
+
+</head>
+
+
+<body>
+
+
+<div class="reveal">
+<div class="slides">
+
+	<section>
+		<p class="r-fit-text" style="padding-left:3%;padding-right: 3%;"> Leveraging Natural Dynamics</p>
+		<p style=" padding-left: 3%; font-size: 1.3em; "> The surprisingly rich geometry of efficiently turning around </p>
+		<br>
+		<br>
+		<p>presentend by <em>Gabin Lembrez</em></p>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/atlas-1.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/atlas-2.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/atlas-3.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3>Context: the legged robot dilemma </h3>
+		<ol>
+		</br>
+		<li class="fragment" data-fragment-index="2"> Online optimization using simple locomotion templates - lose dynamic effects (<b>Jallet & al. 2023</b>)  </li>
+		<li class="fragment" data-fragment-index="3"> stabilize a <em>limit cycle</em> found offline - limited to periodic motion (<b>Westervelt & al. 2018</b>)</li>
+		<li class="fragment" data-fragment-index="4">Is there a way to understand and achieve non-periodic whole-body efficient locomotion ? </li>
+		</ol> 
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col">
+		<img  width="100%" src="media/img/hopper.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> A non-linear conservative robot </h3>
+		<ul>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Classical template for legged locomotion (<b>Geyer & al. 2006</b>) </li>
+		<li class="fragment" data-fragment-index="2"> Assumption : massless leg
+		</li>
+		<li class="fragment" data-fragment-index="3"> Hybrid dynamics: 
+			$$ 
+				\left\{ \begin{matrix} \dot{x} = f_i(x) & x \in T\mathcal{Q} \\ x^+ = \Delta_i (x^-) & x^- \in \mathcal{S}_i \end{matrix} \right. 
+			$$
+		</li>
+		</ul>
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/poincare_0.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/poincare.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/poincare_2.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Poincaré section: </h3>
+		<ul>
+		</br>
+		<li class="fragment" data-fragment-index="1"> surface $\mathcal{S}$ of dimension $n-1$ non-transverse to the flow $x(t)$</li>
+		<li class="fragment" data-fragment-index="2"> Poincaré return map 
+			 $$P:\mathcal{S}\rightarrow \mathcal{S}$$
+		</li>
+		<li class="fragment" data-fragment-index="3">  A periodic trajectory of the system is a  <em>fixed point</em> of $P$</li>
+		</ul> 
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class="current-visible fragment" data-fragment-index="1" width="100%" src="media/img/continuation.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/continuation_2.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/continuation_3.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Continuation of a family of motion: </h3>
+		<ol>
+		</br>
+		<li class="fragment" data-fragment-index="1"> There exist at least one periodic orbit in the neighbourhood of a periodic orbit (<b>Raff & al. 2022</b>)  </li>
+		<li class="fragment" data-fragment-index="2"> We can explore those orbits by taking small steps in the nullspace of $P(x) - x$  </li>
+		<li class="fragment" data-fragment-index="3"> The collection of fixed points in the Poincaré section is called a <em>generator</em> </li>
+		</ol> 
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/NMM.svg" /> 
+		<img class="fragment" data-fragment-index="3" width="100%" src="media/img/hide.svg" /> 
+		<video class="fragment" data-fragment-index="3" width="100%" src="media/video/NMM.mp4" autoplay loop /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Result : </h3>
+		<ol>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Family of periodic motions are connected regular structures called <em>Natural Motion Manifolds</em> (NMM) </li>
+		<li class="fragment" data-fragment-index="2"> A NMM is fully described by a one dimension generator. </li>
+		<li class="fragment" data-fragment-index="3"> NMMs can branch into different behaviours.</li>
+		</ol> 
+
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<div class="current-visible" data-fragment-index="1"> <video src="media/video/NMM_forward.mp4" autoplay loop /> </div>
+		<div class="fragment current-visible" data-fragment-index="2"> <video src="media/video/NMM_backward.mp4" autoplay loop /> </div>
+		<div class="fragment" data-fragment-index="3"> <video src="media/video/NMM_transition.mp4" autoplay loop /> </div>
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> What about complex motion ?</h3>
+		<ul>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Let's do a u-turn while minimizing the energy required. </li>
+		<li class="fragment" data-fragment-index="2">  We want to 'stick' to NMMs as much as possible </li>
+		<li class="fragment" data-fragment-index="3"> Using the same continuation technique, we discover a  <em>transition</em> NMM. </li>
+		</ul> 
+
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img  width="100%" src="media/img/hopper_actuated.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Actuators</h3>
+		<ul>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Actuators are placed in parallel to springs </li>
+		<li class="fragment" data-fragment-index="2">  $u_f$ is active during flight </li>
+		<li class="fragment" data-fragment-index="3"> $u_s$ is active during stance </li>
+		</ul> 
+
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img  width="100%" src="media/img/generators.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Predictive control:</h3>
+		<p> Hybrid MPC with terminal constraint on the generator $\Gamma$ of the desired motion</p>
+		\[
+			\begin{align}
+				 \min_u &\quad \sum_{k=0}^N \| u_k \|_R^2 \\
+				\text{s.t.} &\quad \dot{x}_{k} = f(x_k,u_{k}) \\
+				& \quad e_i(x(t_i^-)) = 0 \\
+				& \quad x(t_i^+) =  h_i(x(t_i^-)) \\
+				& \quad  \Gamma(E(x_N)) = 0.
+			\end{align}
+		\]
+
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img src="media/img/control.svg" width="100%" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Result: </h3>
+		<ol>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Excitation of the form
+			$$ A \cos(\omega t + \phi) $$ </li>
+		<li class="fragment" data-fragment-index="2"> Small magnitude. </li>
+		<li class="fragment" data-fragment-index="3">  Generalisation of the concept of <em>mode</em> in the non-linear case. </li>
+		</ol> 
+
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<video src="media/video/NMM_actuated.mp4" autoplay loop /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Result: </h3>
+		<ol>
+		</br>
+		<li class="fragment" data-fragment-index="1"> We achieved non-periodic motion </li>
+		<li class="fragment" data-fragment-index="2"> With minimal energy efficient by staying close to conservative 'modes' of locomotion </li>
+		<li class="fragment" data-fragment-index="3">  <em>Future work:</em> systematic continuation of such periodic orbits for more complex non conservative mechanisms. </li>
+		</ol> 
+
+	</div>
+	</div>
+	</section>
+
+	<section>
+		<h1> Thank you for your attention </h1>
+	</section>
+
+
+
+
+</div>
+</div>
+
+	<script src="../reveal/dist/reveal.js"></script>
+	<script src="../reveal/plugin/notes/notes.js"></script>
+	<script src="../reveal/plugin/markdown/markdown.js"></script>
+	<script src="../reveal/plugin/highlight/highlight.js"></script>
+	<script src="../reveal/plugin/math/math.js"></script>
+	<script>
+		Reveal.initialize({
+			transition: 'fade',
+			transitionSpeed: 'fast',
+			hash: true,
+			slideNumber: true,
+			width: 1920,
+			height: 1080,
+			autoPlayMedia: true,
+			mathjax2: {
+				config: 'TeX-AMS_HTML-full',
+				TeX: {
+					Macros: {
+						R: '\\mathbb{R}',
+						set: [ '\\left\\{#1 \\; ; \\; #2\\right\\}', 2 ]
+					}
+				}
+			},
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.MathJax2  ]
+		});
+	</script>
+
+</body>
+</html>
