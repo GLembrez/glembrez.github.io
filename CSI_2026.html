@@ -6,10 +6,10 @@
 
 	<title>CSI 2026</title>
 
-	<link rel="stylesheet" href="../reveal/dist/reset.css">
-	<link rel="stylesheet" href="../reveal/dist/reveal.css">
-	<link rel="stylesheet" href="../reveal/dist/theme/dark.css">
-	<link rel="stylesheet" href="../reveal/plugin/highlight/monokai.css">
+	<link rel="stylesheet" href="reveal/dist/reset.css">
+	<link rel="stylesheet" href="reveal/dist/reveal.css">
+	<link rel="stylesheet" href="reveal/dist/theme/dark.css">
+	<link rel="stylesheet" href="reveal/plugin/highlight/monokai.css">
 
 </head>
 
@@ -20,8 +20,47 @@
 <div class="reveal">
 <div class="slides">
 
+	
 	<section>
+		<p style="padding-left:3%;padding-right: 3%;font-size: 4em;"> CSI 2026 </p>
+		<p style=" padding-left: 3%; font-size: 1.3em; "> Utilisation de la dynamique naturelle pour la commande de mouvements complexes de robots à jambes </p>
+		<br>
+		<br>
+		<p>présenté par <em>Gabin Lembrez</em></p>
+	</section>
 
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/atlas-1.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/atlas-2.svg" /> 
+		<img class="fragment" data-fragment-index="3" width="100%" src="media/img/atlas-3.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3>Le compromis de la dynamique </h3>
+		<ol>
+		</br>
+		<li class="fragment" data-fragment-index="2"> Optimisation de trajectoire en ligne à partir de modèles réduits - perte d'effets dynamiques  </li>
+		<li class="fragment" data-fragment-index="3"> Stabilisation d'un  <em>cycle limite</em> découvert hors-ligne - Limité à des mouvements périodiques (<b>Westervelt & al. 2018</b>)</li>
+		</ol> 
+	</div>
+	</section>
+
+	<section>
+		<h2> Problématique :</h2>
+		<p  style="text-align: left; margin-left: 10%; margin-right: 10%"> <i>Comment utiliser la dynamique complète pour générer des comportements agiles, complexes et efficaces ? </i> </p>
+		<ol  style="margin-left: 15%; margin-right: 15%">
+		</br>
+		<li class="fragment" data-fragment-index="1"> Comment garantir que le robot se comporte bien en dehors d'un cycle limite: <em>viabilité et zéro dynamique.</em>  </li>
+		<li class="fragment" data-fragment-index="2"> Comment utiliser la dynamique intrinsèque pour générer des mouvements efficaces : <em> commande par variétés de mouvements naturels</em> </li>
+		</ol> 
+
+	</section>
+
+	<section>
+		<h1>Viabilité et Zéro Dynamique</h1>
 	</section>
 
 	<section>
@@ -36,11 +75,11 @@
 		<h3> Contraintes virtuelles pour un robot marcheur </h3>
 		<ul>
 		</br>
-		<li class="fragment" data-fragment-index="1"> <strong>Hypothèses :</strong> robot planaire, $n$ DDLs, $n-1$ actionneurs </li>
-		<li class="fragment" data-fragment-index="2"> <strong>Variable de phase:</strong> 
+		<li class="fragment" data-fragment-index="1"> <em>Hypothèses :</em> robot planaire, $n$ DDLs, $n-1$ actionneurs </li>
+		<li class="fragment" data-fragment-index="2"> <em>Variable de phase:</em> 
 		$$ s = \frac{\theta - \theta_i}{\theta_f - \theta_i} \in [0,1] $$
 		</li>
-		<li class="fragment" data-fragment-index="3">  $n-1$ <strong>contraintes virtuelles </strong> de la forme $$ y_i(q) = q_i - h_i(s,\alpha) $$ </li>
+		<li class="fragment" data-fragment-index="3">  $n-1$ <em>contraintes virtuelles </em> de la forme $$ y_i(q) = q_i - h_i(s,\alpha) $$ </li>
 		</ul> 
 	</div>
 	</div>
@@ -153,13 +192,18 @@
 		</br>
 		<li class="current-visible" data-fragment-index="1"> Un seul paramètre $p$ par contrainte (position à $s=1$). On optimise en ligne 
 			$$
-				\begin{matrix} \min & p \\ \text{s.t.} & z^+ \in \mathcal{V} \end{matrix}
+				\begin{matrix} \min & \| v(p) - v_d \|^2 \\ \text{s.t.} & z^+ \in \mathcal{V} \end{matrix}
 			$$
 		</li>
 		<li class="fragment" data-fragment-index="2">  Les trajectoires obtenues sont viables du point de vue de la zéro dynamique, mais rien ne contraint l' <em>efficacité énergétique</em></li>
 		</ul> 
 	</div>
 	</div>
+	</section>
+
+
+	<section>
+		<h1>Variétés des Mouvements Naturels</h1>
 	</section>
 
 	<section>
@@ -189,7 +233,7 @@
 	<div class="multiCol">
 	<div class="col" >
 	<div class="r-stack">
-		<img class="fragment current-visible" data-fragment-index="1" width="100%" src="media/img/poincare_0.svg" /> 
+		<img class=" current-visible fragment" data-fragment-index="1" width="100%" src="media/img/poincare_0.svg" /> 
 		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/poincare.svg" /> 
 		<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/poincare_2.svg" /> 
 	</div>
@@ -198,7 +242,7 @@
 		<h3> Section de Poincaré : </h3>
 		<ul>
 		</br>
-		<li> surface $\mathcal{S}$ de dimension $n-1$ non-transverse au flot $x(t)$</li>
+		<li class="fragment" data-fragment-index="1"> surface $\mathcal{S}$ de dimension $n-1$ transverse au flot $x(t)$</li>
 		<li class="fragment" data-fragment-index="2"> Application de premier retour $$P:\mathcal{S}\rightarrow \mathcal{S}$$
 		</li>
 		<li class="fragment" data-fragment-index="3">  Une trajectoire périodique est un <em>point fixe</em> de $P$</li>
@@ -375,43 +419,73 @@
 		</br>
 		<li class="fragment" data-fragment-index="1"> Le mouvement est non-périodique. </li>
 		<li class="fragment" data-fragment-index="2"> La dépense d'énergie est minimisée par proximité avec des "modes" conservatifs </li>
-		<li class="fragment" data-fragment-index="3">  La démarche proposée est générale et ne nécessite pas de simplification de la dynamique pour des robots plus complexes. </li>
+		<li class="fragment" data-fragment-index="3">  papier RAL en cours d'écriture </li>
 		</ol> 
 
 	</div>
 	</div>
 	</section>
 
-	<!-- <section>
-	<div class='multiCol'>
-	<div class="col r-stack">
-		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/humanoid.svg" /> 
-		<img class="fragment" data-fragment-index="2" width="100%" src="media/img/humanoidPendulum.svg" /> 
-		<img class="fragment" data-fragment-index="3" width="100%" src="media/img/humanoidSLIP.svg" /> 
-		</div>
-	<div class='col' style="text-align: left;">
-	<h3 data-fragment-index="0" class="current-visible"> Vu de loin, le problème est simple </h3>
-		<ul>
+	<section>
+		<h2> Prochaines étapes</h2>
+		<ol  style="margin-left: 15%; margin-right: 15%">
 		</br>
-		<li class="current-visible" data-fragment-index="1"> Un humain = de la masse qui peut basculer d'avant en arrière </li>
-		<li class="fragment" data-fragment-index="2"> On le modélise par un <em>pendule inverse</em>  </li>
-		<li class="fragment" data-fragment-index="3">  Rôle d'une jambe : <em>ressort</em>  </li>
-		</br>
-		</ul> 
+		<li class="fragment" data-fragment-index="1"> Généralisation à des systèmes non-conservatifs en rajoutant de l'<em>injection d'énergie.</em>  </li>
+		<li class="fragment" data-fragment-index="2"> Synthèse de contraintes virtuelles à partir des variétés de mouvement naturel </li>
+		<li class="fragment" data-fragment-index="3"> Formulation en problème de commande prédictive avec des fonctions de contrôle de Lyapunov. </li>
+		<li class="fragment" data-fragment-index="5"> <i>Validation expérimentale</i> </li>
+		<li class="fragment" data-fragment-index="6"> <i>Passage en  3 dimensions </i> </li>
+		</ol> 
+
+	</section>
+
+
+				<section>
+					<h2> Références </h2>
+					<div class="content" style="height: 800px; margin-left: 10%; margin-right: 5%; text-align: left;">
+						<ul class="refList">
+							</br>
+
+							<li><em>Gan, Z., Yesilevskiy, Y., Zaytsev, P. & Remy, C. D. (2018)</em>. All common bipedal gaits emerge from a single passive model.. Journal of the Royal Society Interface, 15(146). https://doi.org/10.1098/RSIF.2018.0455</li>
+
+							<li><em>Rosa, N. and Lynch, K. (2014)</em>. Extending equilibria to periodic orbits for walkers using continuation methods. 2014 IEEE/RSJ International Conference on Intelligent Robots and Systems. https://doi.org/10.1109/IROS.2014.6943076</li>
+
+							<li> <em>Gan, Z., Jiao, Z. & Remy, C. D. (2018)</em>. On the Dynamic Similarity Between Bipeds and Quadrupeds: A Case Study on Bounding. IEEE Robotics and Automation Letters, 3. https://doi.org/10.1109/LRA.2018.2854923 </li>
+
+							<li><em>Raff, M., Rosa, N. & Remy, C. D. (2022).</em> Connecting Gaits in Energetically Conservative Legged Systems. IEEE Robotics and Automation Letters, PP. https://doi.org/10.1109/LRA.2022.3186500 </li>
+
+							<li>  <em>Calzolari, D., Della Santina, C. & Albu‐Schäffer, A. (2025) </em>. Exciting families of passive gaits in an elastic quadruped via natural motion manifold control. The International Journal of Robotics Research. https://doi.org/10.1177/02783649251347305 </li>
+
+							<li> <em>Westervelt, E. R., Grizzle, J. W., Chevallereau, C., Choi, J. H., & Morris, B. (2018)</em>. Feedback control of dynamic bipedal robot locomotion. CRC press. </li>
+
+						</ul>
+					</div>
+				</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/NMM.svg" /> 
 	</div>
-	</div> 
-	</section> -->
+	<div class='col' style="text-align: left;">
+		<h3> Discussion : </h3>
+		<p><i>Une perspective intéressante sur la comparaison des méthodes basées sur les mouvements naturels avec les approches statistiques (RL, PPO, TRPO, ...) proposée par Davide Calzolari lors de la Dynamic Walking Conference 2025</i></p>
+
+	</div>
+	</div>
+	</section>
 
 
 
 </div>
 </div>
 
-	<script src="../reveal/dist/reveal.js"></script>
-	<script src="../reveal/plugin/notes/notes.js"></script>
-	<script src="../reveal/plugin/markdown/markdown.js"></script>
-	<script src="../reveal/plugin/highlight/highlight.js"></script>
-	<script src="../reveal/plugin/math/math.js"></script>
+	<script src="reveal/dist/reveal.js"></script>
+	<script src="reveal/plugin/notes/notes.js"></script>
+	<script src="reveal/plugin/markdown/markdown.js"></script>
+	<script src="reveal/plugin/highlight/highlight.js"></script>
+	<script src="reveal/plugin/math/math.js"></script>
 	<script>
 		Reveal.initialize({
 			transition: 'fade',
