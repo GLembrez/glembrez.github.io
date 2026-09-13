@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>L2S</title>
+
+	<link rel="stylesheet" href="reveal/dist/reset.css">
+	<link rel="stylesheet" href="reveal/dist/reveal.css">
+	<link rel="stylesheet" href="reveal/dist/theme/dark.css">
+	<link rel="stylesheet" href="reveal/plugin/highlight/monokai.css">
+
+</head>
+
+
+<body>
+
+
+<div class="reveal">
+<div class="slides">
+
+	
+	<section>
+		<p style="padding-left:3%;padding-right: 3%;font-size: 4em;"> Natural Motion Manifolds </p>
+		<p style=" padding-left: 3%;padding-right: 3%; font-size: 1.15em; "> Leveraging the geometry of the trajectory space to perform efficient agile locomotion </p>
+		<br>
+		<br>
+		<p>Presented by <em>Gabin Lembrez</em></p>
+	</section>
+
+	<!-- <section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/atlas-1.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/atlas-2.svg" /> 
+		<img class="fragment" data-fragment-index="3" width="100%" src="media/img/atlas-3.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3>Le compromis de la dynamique </h3>
+		<ol>
+		</br>
+		<li class="fragment" data-fragment-index="2"> Optimisation de trajectoire en ligne à partir de modèles réduits - perte d'effets dynamiques  </li>
+		<li class="fragment" data-fragment-index="3"> Stabilisation d'un  <em>cycle limite</em> découvert hors-ligne - Limité à des mouvements périodiques (<b>Westervelt & al. 2018</b>)</li>
+		</ol> 
+	</div>
+	</section> -->
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col">
+		<img  width="100%" src="media/img/hopper.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> A non-linear conservative system </h3>
+		<ul>
+		</br>
+		<li> A classical template for legged locomotion </li>
+		<li class="fragment" data-fragment-index="2"> Assumption : massless leg
+		</li>
+		<li class="fragment" data-fragment-index="3"> Hybrid dynamics: 
+			$$ 
+				\left\{ \begin{matrix} \dot{x} = f_i(x) & x \in T\mathcal{Q} \\ x^+ = \Delta_i (x^-) & x^- \in \mathcal{S}_i \end{matrix} \right. 
+			$$
+		</li>
+		</ul>
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<video width="100%" src="media/video/surface.mp4" loop autoplay /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Natural Motion Manifold </h3>
+	</br>
+		<div class="block_flat">
+			A two-dimensional invariant sub-manifold $\mathcal{M}\subset T\mathcal{Q}$ is a <em>Natural Motion Manifold</em> if all evolutions on it are periodic and conservative (Calzolari & al., 2025). 
+		</div>
+		<div class="citation">
+			Calzolari, D., Della Santina, C. & Albu‐Schäffer, A. (2025). Exciting families of passive gaits in an elastic quadruped via natural motion manifold control. The International Journal of Robotics Research. 
+		</div>
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<video width="100%" src="media/video/NMM.mp4" loop autoplay/> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Natural Motion Manifold </h3>
+	</br>
+		<div class="block_flat">
+			A two-dimensional invariant sub-manifold $\mathcal{M}\subset T\mathcal{Q}$ is a <em>Natural Motion Manifold</em> if all evolutions on it are periodic and conservative (Calzolari & al., 2025). 
+		</div>
+		<div class="citation">
+			Calzolari, D., Della Santina, C. & Albu‐Schäffer, A. (2025). Exciting families of passive gaits in an elastic quadruped via natural motion manifold control. The International Journal of Robotics Research. 
+		</div>
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<video width="100%" src="media/video/surface_generator.mp4" loop autoplay/> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> The Generator </h3>
+	</br>
+		<ul>
+			<li class="fragment"> Dimension one intersection of the NMM $\mathcal{M}$ with a <em>Poincaré section</em> $\mathcal{S}$</li>
+			<li class="fragment"> Fully describes $\mathcal{M}$ </li>
+			<li class="fragment"> Parametrized by energy level: 
+				$$ \gamma (E) = \mathcal{M} \cap \mathcal{S} = \{x\in \mathcal{M} | a(x) = 0\}$$
+			</li>
+		</ul>
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class="fragment current-visible" data-fragment-index="1" width="100%" src="media/img/poincare_0.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/poincare.svg" /> 
+		<img class="fragment " data-fragment-index="3" width="100%" src="media/img/poincare_2.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Poincaré section </h3>
+		<!-- move neighborhood here -->
+		<ul>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Surface $\mathcal{S}$ of dimension $n-1$ transverse to the flow $x(t)$</li>
+		<li class="fragment" data-fragment-index="2"> First return map $$P:\mathcal{S}\rightarrow \mathcal{S}$$
+		</li>
+		<li class="fragment" data-fragment-index="3"> A periodic trajectory is a  <em>fixed point</em> of $P$</li>
+		</ul> 
+	</div>
+	</div>
+	</section>
+
+	<!-- <section>
+	<div class="multiCol">
+	<div class="col" >
+	<img  width="100%" src="media/img/trajectory.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> The trajectory space </h3>
+		<ul>
+			$$ z = \begin{bmatrix} \mathbf{x}_0 \\ \mathbf{t} \\ \xi  \end{bmatrix} \begin{matrix} \in \mathbb{R}^6 \\ \in \mathbb{R}^3 \\ \in \mathbb{R}  \end{matrix}$$
+		</br>
+		<li class="fragment" data-fragment-index="1"> $\mathbf{x}_0$ the initial state 
+		</li>
+		<li class="fragment" data-fragment-index="2"> $\mathbf{t} = [t_{TD}, t_{LO}, t_{f}]^T$ the vector of event timings
+		</li>
+		<li class="fragment" data-fragment-index="3"> $\xi \ll 1$ a residual to account for dissipations introduced by numerical integration</li>
+		</ul> 
+	</div>
+	</div>
+	</section> -->
+
+
+	<!-- <section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class=" current-visible fragment" data-fragment-index="1" width="100%" src="media/img/trajectory_special_1.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/trajectory_special_2.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/trajectory_special_3.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Special trajectories </h3>
+		<br/>
+		<ul>
+		<li class=" current-visible" data-fragment-index="1">$\mathbf{z}$ is a valid trajectory if the guard conditions are satisfied at $\mathbf{t}$ 
+		$$ \begin{matrix} e_{TD}(\phi(\mathbf{x}_0, t_{TD})) = 0 \\ e_{LO}(\phi(\mathbf{x}_0, t_{LO})) = 0  \end{matrix} $$</li>
+		<li class="fragment" data-fragment-index="2">$\mathbf{z}$ is identified by its energy level $\bar{E}$ such that: $$ E(\mathbf{x}_0) = \bar{E} $$</li>
+		<li class="fragment" data-fragment-index="3"> Remove phase indetermination: $\mathbf{x}_0$ lies in a Poincaré section 
+			$$ a(\mathcal{x}_0) = 0 $$
+		</li>
+		</ul> 
+	</div>
+	</div>
+	</section> -->
+
+	<!-- <section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class=" current-visible" data-fragment-index="1" width="100%" src="media/img/poincare_0.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/poincare.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/poincare_2.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Special trajectories </h3>
+		<br/>
+		<ul>
+		<li class=" current-visible" data-fragment-index="1"> $n_{p}$ periodicity constraint
+			$$  \mathbf{A}_{p} (\phi (\mathbf{x}_0,t_f) - \mathbf{x}_0)  = 0 $$
+		</li>
+		<li class="fragment" data-fragment-index="2"> $n_{ap}$ anti-periodicity constraint
+			$$  \mathbf{A}_{ap} (\phi (\mathbf{x}_0,t_f) + \mathbf{x}_0)  = 0 $$
+		</li>
+		<li class="fragment" data-fragment-index="3"> $n_{np}$ non periodicity constraint
+			$$  \mathbf{A}_{np}  \mathbf{x}_0  = 0 $$
+		</li>
+		</ul> 
+		<p class="fragment" data-fragment-index="4"> Where $ n_p + n_{ap} + n_{np} = 6 $ </p>
+	</div>
+	</div>
+	</section> -->
+
+	<!-- <section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class=" current-visible" data-fragment-index="1" width="100%" src="media/img/poincare_0.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="2" width="100%" src="media/img/poincare.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="3" width="100%" src="media/img/poincare_2.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Special trajectories </h3>
+		<br/>
+		$$
+			\mathbf{r}_{\bar{E}} (\mathbf{z}) = \begin{bmatrix} \mathbf{A}_{p} (\phi (\mathbf{x}_0,t_f) - \mathbf{x}_0) \\ \mathbf{A}_{ap} (\phi (\mathbf{x}_0,t_f) + \mathbf{x}_0) \\ \mathbf{A}_{np} \mathbf{x}_0 \\ a (\mathbf{x}_0) \\ E(\mathbf{x}_0) - \bar{E} \\ e_{TD}(\phi(\mathbf{x}_0, t_{TD})) \\ e_{LO}(\phi(\mathbf{x}_0, t_{LO})) \end{bmatrix} \in \mathbb{R}^{11}
+		$$
+		<br/>
+		<div class="fragment block_flat"> 
+		$\mathbf{r}_{\bar{E}}(\mathbf{z}) = \mathbf{0}$ defines a regular orbit of energy $\bar{E}$ of the robot. </div>
+	</div>
+	</div>
+	</section> -->
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<img class=" fragment current-visible" data-fragment-index="1" width="100%" src="media/img/continuation_0.svg" /> 
+		<img class=" fragment current-visible" data-fragment-index="2" width="100%" src="media/img/continuation.svg" /> 
+		<img class=" fragment current-visible" data-fragment-index="3" width="100%" src="media/img/continuation_1.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="4" width="100%" src="media/img/continuation_2.svg" /> 
+		<img class="fragment current-visible" data-fragment-index="5" width="100%" src="media/img/continuation_3.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Continuation of a family of motion </h3>
+		</br>
+		<ul>
+			<li class="fragment" data-fragment-index="1"> $\mathbf{z}_k$ is a periodic trajectory if $\mathbf{r}(\mathbf{z}_k)=\mathbf{0}$ </li>
+			<li class="fragment" data-fragment-index="2"> <em> Predictor step: </em> take a small step in the tangent space of $\mathbf{r}$:
+			$$ \left. \frac{\partial \mathbf{r}}{\partial \mathbf{z}} \right|_{\mathbf{z}_k}\mathbf{v} = \mathbf{0} \quad \longrightarrow \quad \overline{\mathbf{z}}_{k+1} = \mathbf{z} + \delta \mathbf{v} $$ </li>
+			<li class="fragment" data-fragment-index="3"> <em>Corrector step: </em> Find the closest zero of $\mathbf{r}$ using Newton-Raphson </li>
+		</ul>
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img  width="100%" src="media/img/bifurcation1.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Bifurcation points </h3>
+		<ol>
+		</br>
+		<li class="fragment"> <em> Detection:</em> the dimension of the tangent space is locally 2
+			$$ \det \left( \begin{matrix} \left. \frac{\partial \mathbf{r}}{\partial \mathbf{z}} \right|_{\mathbf{z}_k} \\ \mathbf{v}_k^T \end{matrix} \right) = 0 $$ </li> 
+		<li class="fragment"> <em>Continuation:</em> projection of the equation $\mathbf{r}(\mathbf{z}^*)=\mathbf{0}$ in  the plane $(\mathbf{\tau}_1,\mathbf{\tau}_2)$ to get the tangent to the new branch</li>
+		</ol> 
+
+	</div>
+	</div>
+	</section>
+
+	
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
+		<div class="current-visible" data-fragment-index="1"> <video src="media/video/NMM_forward.mp4" autoplay loop /> </div>
+		<div class="fragment current-visible" data-fragment-index="2"> <video src="media/video/NMM_backward.mp4" autoplay loop /> </div>
+		<div class="fragment" data-fragment-index="3"> <video src="media/video/NMM_transition.mp4" autoplay loop /> </div>
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Agile locomotion from motion primitives</h3>
+		<ul>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Goal: perform a u-turn with as little energy variation as possible.</li>
+		<li class="fragment" data-fragment-index="2">  Idea: staying close to NMMs to maximize the use of passive dynamics. </li>
+		<li class="fragment" data-fragment-index="3"> Leverage the <em>transition</em> NMM </li>
+		</ul> 
+
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img  width="100%" src="media/img/hopper_actuated.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Actuators</h3>
+		<ul>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Actuators are placed in parallel to the springs </li>
+		<li class="fragment" data-fragment-index="2">  $u_f$ is only active during flight </li>
+		<li class="fragment" data-fragment-index="3"> $u_s$ is only active during stance </li>
+		</ul> 
+
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img width="100%" src="media/img/generators.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Predictive control</h3>
+		<div class="r-stack">
+		<div class="fragment current-visible" data-fragment-index="1">
+		<div class="block_flat"> Let $\mathcal{M}$ be the <em>NMM</em> corresponding to the desired motion at the end of the step. Let $\gamma$ be the associated <em>generator</em>. The input $u$ is chosen through multiple shooting optimal control with horizon 1 step. </div>
+		</div>
+		<div class="fragment" data-fragment-index="2">
+		\[
+			\begin{align}
+				 \min_u &\quad \sum_{k=0}^N \| u_k \|_R^2 \\
+				\text{s.t.} &\quad \dot{x}_{k} = f(x_k,u_{k}) \\
+				& \quad e_i(x(t_i^-)) = 0 \\
+				& \quad x(t_i^+) =  h_i(x(t_i^-)) \\
+				& \quad  \gamma(E(x_N)) = 0.
+			\end{align}
+		\]
+		</div>
+		</div>
+
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img src="media/img/control.svg" width="100%" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Result : </h3>
+		<ol>
+		</br>
+		<li class="fragment" data-fragment-index="1"> Excitation of the form 
+			$$ A \cos(\omega t + \phi) $$ </li>
+		<li class="fragment" data-fragment-index="2"> Small magnitude. </li>
+		<li class="fragment" data-fragment-index="3">  Behaves like a "non-linear" mode. </li>
+		</ol> 
+
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<video src="media/video/NMM_actuated.mp4" autoplay loop /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Result : </h3>
+
+	</div>
+	</div>
+	</section>
+
+
+
+
+				<section>
+					<h2> References </h2>
+					<div class="content" style="height: 800px; margin-left: 10%; margin-right: 5%; text-align: left;">
+						<ul class="refList">
+							</br>
+
+							<li><em>Gan, Z., Yesilevskiy, Y., Zaytsev, P. & Remy, C. D. (2018)</em>. All common bipedal gaits emerge from a single passive model.. Journal of the Royal Society Interface, 15(146). https://doi.org/10.1098/RSIF.2018.0455</li>
+
+							<li><em>Rosa, N. and Lynch, K. (2014)</em>. Extending equilibria to periodic orbits for walkers using continuation methods. 2014 IEEE/RSJ International Conference on Intelligent Robots and Systems. https://doi.org/10.1109/IROS.2014.6943076</li>
+
+							<li> <em>Gan, Z., Jiao, Z. & Remy, C. D. (2018)</em>. On the Dynamic Similarity Between Bipeds and Quadrupeds: A Case Study on Bounding. IEEE Robotics and Automation Letters, 3. https://doi.org/10.1109/LRA.2018.2854923 </li>
+
+							<li><em>Raff, M., Rosa, N. & Remy, C. D. (2022).</em> Connecting Gaits in Energetically Conservative Legged Systems. IEEE Robotics and Automation Letters, PP. https://doi.org/10.1109/LRA.2022.3186500 </li>
+
+							<li>  <em>Calzolari, D., Della Santina, C. & Albu‐Schäffer, A. (2025) </em>. Exciting families of passive gaits in an elastic quadruped via natural motion manifold control. The International Journal of Robotics Research. https://doi.org/10.1177/02783649251347305 </li>
+
+							<li> <em>Westervelt, E. R., Grizzle, J. W., Chevallereau, C., Choi, J. H., & Morris, B. (2018)</em>. Feedback control of dynamic bipedal robot locomotion. CRC press. </li>
+
+						</ul>
+					</div>
+				</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/NMM.svg" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Discussion : </h3>
+		<p><i>Une perspective intéressante sur la comparaison des méthodes basées sur les mouvements naturels avec les approches statistiques (RL, PPO, TRPO, ...) proposée par Davide Calzolari lors de la Dynamic Walking Conference 2025</i></p>
+
+	</div>
+	</div>
+	</section>
+
+
+
+</div>
+</div>
+
+	<script src="reveal/dist/reveal.js"></script>
+	<script src="reveal/plugin/notes/notes.js"></script>
+	<script src="reveal/plugin/markdown/markdown.js"></script>
+	<script src="reveal/plugin/highlight/highlight.js"></script>
+	<script src="reveal/plugin/math/math.js"></script>
+	<script>
+		Reveal.initialize({
+			transition: 'fade',
+			transitionSpeed: 'fast',
+			hash: true,
+			slideNumber: true,
+			width: 1920,
+			height: 1080,
+			autoPlayMedia: true,
+			mathjax2: {
+				config: 'TeX-AMS_HTML-full',
+				TeX: {
+					Macros: {
+						R: '\\mathbb{R}',
+						set: [ '\\left\\{#1 \\; ; \\; #2\\right\\}', 2 ]
+					}
+				}
+			},
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.MathJax2  ]
+		});
+	</script>
+
+</body>
+</html>

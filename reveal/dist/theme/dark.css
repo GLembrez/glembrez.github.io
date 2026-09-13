@@ -406,7 +406,13 @@ div.block_flat {
   border-radius: 25px;
   background-color: #363a4f;
   padding: 6%; 
-  margin: auto;
+  /* margin: auto; */
+}
+
+div.citation {
+  margin-top: 10%;
+  font-size: 0.75em;
+  color: #a5adcb;
 }
 
 div.alert {
