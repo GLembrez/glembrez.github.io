@@ -58,8 +58,8 @@
 		<h3> A non-linear conservative system </h3>
 		<ul>
 		</br>
-		<li> A classical template for legged locomotion </li>
-		<li class="fragment" data-fragment-index="2"> Assumption : massless leg
+		<li> A classical <em>template</em> for legged locomotion with $n=3$ DOFs </li>
+		<li class="fragment" data-fragment-index="2"> Assumption: <em>massless</em> leg
 		</li>
 		<li class="fragment" data-fragment-index="3"> Hybrid dynamics: 
 			$$ 
@@ -74,54 +74,23 @@
 	<section>
 	<div class="multiCol">
 	<div class="col" >
-		<video width="100%" src="media/video/surface.mp4" loop autoplay /> 
+		<div >
+		<video width="100%" src="media/video/limit_cycle.mp4" loop autoplay /> 
+		</div>
+		<div>
+		<video width="100%" src="media/video/noLimitCycle.mp4" loop autoplay/>
+		</div>
 	</div>
 	<div class='col' style="text-align: left;">
-		<h3> Natural Motion Manifold </h3>
-	</br>
-		<div class="block_flat">
-			A two-dimensional invariant sub-manifold $\mathcal{M}\subset T\mathcal{Q}$ is a <em>Natural Motion Manifold</em> if all evolutions on it are periodic and conservative (Calzolari & al., 2025). 
-		</div>
-		<div class="citation">
-			Calzolari, D., Della Santina, C. & Albu‐Schäffer, A. (2025). Exciting families of passive gaits in an elastic quadruped via natural motion manifold control. The International Journal of Robotics Research. 
-		</div>
-	</div>
-	</div>
-	</section>
-
-	<section>
-	<div class="multiCol">
-	<div class="col" >
-		<video width="100%" src="media/video/NMM.mp4" loop autoplay/> 
-	</div>
-	<div class='col' style="text-align: left;">
-		<h3> Natural Motion Manifold </h3>
-	</br>
-		<div class="block_flat">
-			A two-dimensional invariant sub-manifold $\mathcal{M}\subset T\mathcal{Q}$ is a <em>Natural Motion Manifold</em> if all evolutions on it are periodic and conservative (Calzolari & al., 2025). 
-		</div>
-		<div class="citation">
-			Calzolari, D., Della Santina, C. & Albu‐Schäffer, A. (2025). Exciting families of passive gaits in an elastic quadruped via natural motion manifold control. The International Journal of Robotics Research. 
-		</div>
-	</div>
-	</div>
-	</section>
-
-	<section>
-	<div class="multiCol">
-	<div class="col" >
-		<video width="100%" src="media/video/surface_generator.mp4" loop autoplay/> 
-	</div>
-	<div class='col' style="text-align: left;">
-		<h3> The Generator </h3>
-	</br>
-		<ul>
-			<li class="fragment"> Dimension one intersection of the NMM $\mathcal{M}$ with a <em>Poincaré section</em> $\mathcal{S}$</li>
-			<li class="fragment"> Fully describes $\mathcal{M}$ </li>
-			<li class="fragment"> Parametrized by energy level: 
-				$$ \gamma (E) = \mathcal{M} \cap \mathcal{S} = \{x\in \mathcal{M} | a(x) = 0\}$$
-			</li>
-		</ul>
+		<h3> The problem </h3>
+		<br/>
+		<p> Agile legged locomotion is not limited to <em>periodic limit cycles</em> ! </p>
+		<br/>
+			<ol>
+				<li>How to maximize the use of intrinsic dynamics in locomotion ?</li>
+				<li>How to perform a reversing maneuvre efficiently ?</li>
+			</ol>
+			   
 	</div>
 	</div>
 	</section>
@@ -137,18 +106,67 @@
 	</div>
 	</div>
 	<div class='col' style="text-align: left;">
-		<h3> Poincaré section </h3>
+		<h3> Poincaré section and periodic orbits </h3>
 		<!-- move neighborhood here -->
 		<ul>
 		</br>
-		<li class="fragment" data-fragment-index="1"> Surface $\mathcal{S}$ of dimension $n-1$ transverse to the flow $x(t)$</li>
-		<li class="fragment" data-fragment-index="2"> First return map $$P:\mathcal{S}\rightarrow \mathcal{S}$$
+		<li class="fragment" data-fragment-index="1"> Surface $\mathcal{S}$ of dimension $n-1$ <em>transverse</em> to the flow $x(t)$</li>
+		<li class="fragment" data-fragment-index="2"> First return map $P:\mathcal{S}\rightarrow \mathcal{S}$
 		</li>
-		<li class="fragment" data-fragment-index="3"> A periodic trajectory is a  <em>fixed point</em> of $P$</li>
+		<li class="fragment" data-fragment-index="3"> In a neighborhood of a periodic orbit there are other periodic orbits (<em>Raff & al., 2022</em>)</li>
 		</ul> 
+		<div class="citation fragment" data-fragment-index="3">
+			Raff, M., Rosa, N. & Remy, C. D. (2022). Connecting Gaits in Energetically Conservative Legged Systems. IEEE Robotics and Automation Letters. 
+		</div>
 	</div>
 	</div>
 	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<div class="r-stack">
+		<div class="fragment">
+		<video width="100%" src="media/video/surface.mp4" loop autoplay /> 
+		</div>
+		<div class="fragment">
+		<video width="100%" src="media/video/NMM.mp4" loop autoplay/>
+		</div>
+		</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Natural Motion Manifold </h3>
+	</br>
+		<div class="block_flat">
+			A two-dimensional invariant sub-manifold $\mathcal{M}\subset T\mathcal{Q}$ is a <em>Natural Motion Manifold</em> if all evolutions on it are periodic and conservative (Calzolari & al., 2025). 
+		</div>
+		<div class="citation">
+			Calzolari, D., Della Santina, C. & Albu-Schäffer, A. (2025). Exciting families of passive gaits in an elastic quadruped via natural motion manifold control. The International Journal of Robotics Research. 
+		</div>
+	</div>
+	</div>
+	</section>
+
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<video width="100%" src="media/video/surface_generator.mp4" loop autoplay/> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> The Generator </h3>
+	</br>
+		<ul>
+			<li class="fragment"> Dimension one intersection of the NMM $\mathcal{M}$ with a <em>Poincaré section</em> $\mathcal{S}$</li>
+			<li class="fragment"> Fully describes $\mathcal{M}$ </li>
+			<li class="fragment"> Parametrized by energy level: 
+				$$ \gamma (E) = \{x\in \mathcal{M} | a(x) = 0\}$$
+			</li>
+		</ul>
+	</div>
+	</div>
+	</section>
+
 
 	<!-- <section>
 	<div class="multiCol">
@@ -303,6 +321,25 @@
 	<div class="multiCol">
 	<div class="col" >
 	<div class="r-stack">
+		<img class=" current-visible" data-fragment-index="1" width="100%" src="media/img/generators_full1.svg" /> 
+		<img class=" fragment current-visible" data-fragment-index="2" width="100%" src="media/img/generators_full.svg" /> 
+	</div>
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Contribution 1 </h3>
+		<ol>
+		</br>
+		<li class="fragment"  data-fragment-index="1" > Generalization of the method in <em>Raff & al. 2022</em> to enable antiperiodic and period $>1$ motion ($\mathcal{T}_i$)</li>
+		<li class="fragment"  data-fragment-index="2" > Design of a collection of <em>connected families of motion</em> offline, through numerical continuation</li>
+		</ol> 
+	</div>
+	</div>
+	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+	<div class="r-stack">
 		<div class="current-visible" data-fragment-index="1"> <video src="media/video/NMM_forward.mp4" autoplay loop /> </div>
 		<div class="fragment current-visible" data-fragment-index="2"> <video src="media/video/NMM_backward.mp4" autoplay loop /> </div>
 		<div class="fragment" data-fragment-index="3"> <video src="media/video/NMM_transition.mp4" autoplay loop /> </div>
@@ -348,41 +385,25 @@
 	<div class='col' style="text-align: left;">
 		<h3> Predictive control</h3>
 		<div class="r-stack">
-		<div class="fragment current-visible" data-fragment-index="1">
-		<div class="block_flat"> Let $\mathcal{M}$ be the <em>NMM</em> corresponding to the desired motion at the end of the step. Let $\gamma$ be the associated <em>generator</em>. The input $u$ is chosen through multiple shooting optimal control with horizon 1 step. </div>
+		<div class=" current-visible fragment" data-fragment-index="1">
+		<div class="block_flat"> <b>Goal.</b> Select the future behaviour of the robot in <em>one step</em> (stance-flight sequence) by switching to a different NMM in the collection </div>
+		<br/>
+		$$ \mathcal{L}_6^- \stackrel{\text{step 1}}{\longrightarrow} \mathcal{T}_2 \stackrel{\text{step 2}}{\longrightarrow} \mathcal{L}_6^+ $$
 		</div>
-		<div class="fragment" data-fragment-index="2">
+		<div class="fragment current-visible" data-fragment-index="2">
+		<p> Let $\gamma (E)$ be a polynomial interpolation of the generator. Solve for $u$ over one stance-flight cycle ($N$ samples): </p>
+		<br/>
+		<div class = 'block'>
 		\[
 			\begin{align}
 				 \min_u &\quad \sum_{k=0}^N \| u_k \|_R^2 \\
 				\text{s.t.} &\quad \dot{x}_{k} = f(x_k,u_{k}) \\
 				& \quad e_i(x(t_i^-)) = 0 \\
-				& \quad x(t_i^+) =  h_i(x(t_i^-)) \\
 				& \quad  \gamma(E(x_N)) = 0.
 			\end{align}
-		\]
+		\] </div>
 		</div>
 		</div>
-
-	</div>
-	</div>
-	</section>
-
-
-	<section>
-	<div class="multiCol">
-	<div class="col" >
-		<img src="media/img/control.svg" width="100%" /> 
-	</div>
-	<div class='col' style="text-align: left;">
-		<h3> Result : </h3>
-		<ol>
-		</br>
-		<li class="fragmen4t" data-fragment-index="1"> Excitation of the form 
-			$$ A \cos(\omega t + \phi) $$ </li>
-		<li class="fragment" data-fragment-index="2"> Small magnitude. </li>
-		<li class="fragment" data-fragment-index="3">  Behaves like a "non-linear" mode. </li>
-		</ol> 
 
 	</div>
 	</div>
@@ -394,11 +415,56 @@
 		<video src="media/video/NMM_actuated.mp4" autoplay loop /> 
 	</div>
 	<div class='col' style="text-align: left;">
-		<h3> Result : </h3>
+		<h3> Contribution 2 </h3>
+		<br/>
+		<ul>
+			<li class="fragment">Successful two-steps reversing maneuvre</li>
+			<li class="fragment">Compute time $\sim 0.01 s$ using <code>IPOPT</code> in <code>CasADi</code> </li>
+			<li class="fragment"> Near-optimal energy efficiency compared to not using the transition NMM</li>
+		</ul>
+	</div>
+	</div>
+	</section>
+
+
+	
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img src="media/img/control.svg" width="100%" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> The control signals </h3>
+		<ul>
+		</br>
+		<li class="fragmen4t" data-fragment-index="1"> Excitation of the form 
+			$$ A \cos(\omega t + \phi) + b$$ </li>
+		<li class="fragment" data-fragment-index="2"> Small magnitude. </li>
+		<li class="fragment" data-fragment-index="3">  Behaves like a "non-linear" mode. </li>
+		</ul> 
 
 	</div>
 	</div>
 	</section>
+
+	<section>
+	<div class="multiCol">
+	<div class="col" >
+		<img src="media/img/variationsw.svg" width="100%" /> 
+	</div>
+	<div class='col' style="text-align: left;">
+		<h3> Discussion </h3>
+		<ul>
+		</br>
+		<li class="fragmen4t" data-fragment-index="1"> Insight on the dual <em>design problem</em>: what stiffness yields the most efficient locomotion? </li>
+		<li class="fragment" data-fragment-index="2"> An alternative to reinforcement learning: rely on a priori knowledge and <em>parcimony</em> rather than exploration through sampling. </li>
+		</ul> 
+
+	</div>
+	</div>
+	</section>
+
+	
 
 
 
@@ -417,7 +483,7 @@
 
 							<li><em>Raff, M., Rosa, N. & Remy, C. D. (2022).</em> Connecting Gaits in Energetically Conservative Legged Systems. IEEE Robotics and Automation Letters, PP. https://doi.org/10.1109/LRA.2022.3186500 </li>
 
-							<li>  <em>Calzolari, D., Della Santina, C. & Albu‐Schäffer, A. (2025) </em>. Exciting families of passive gaits in an elastic quadruped via natural motion manifold control. The International Journal of Robotics Research. https://doi.org/10.1177/02783649251347305 </li>
+							<li>  <em>Calzolari, D., Della Santina, C. & Albu-Schäffer, A. (2025) </em>. Exciting families of passive gaits in an elastic quadruped via natural motion manifold control. The International Journal of Robotics Research. https://doi.org/10.1177/02783649251347305 </li>
 
 							<li> <em>Westervelt, E. R., Grizzle, J. W., Chevallereau, C., Choi, J. H., & Morris, B. (2018)</em>. Feedback control of dynamic bipedal robot locomotion. CRC press. </li>
 
@@ -426,7 +492,7 @@
 				</section>
 
 
-	<section>
+	<!-- <section>
 	<div class="multiCol">
 	<div class="col" >
 		<img class="current-visible" data-fragment-index="1" width="100%" src="media/img/NMM.svg" /> 
@@ -437,7 +503,7 @@
 
 	</div>
 	</div>
-	</section>
+	</section> -->
 
 
 
@@ -451,7 +517,7 @@
 	<script src="reveal/plugin/math/math.js"></script>
 	<script>
 		Reveal.initialize({
-			transition: 'fade',
+			transition: 'none',
 			transitionSpeed: 'fast',
 			hash: true,
 			slideNumber: true,

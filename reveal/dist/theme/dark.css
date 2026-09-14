@@ -396,10 +396,11 @@ section.has-light-background, section.has-light-background h1, section.has-light
  *********************************************/
 div.block {
   border-radius: 25px;
-  border: 5px solid var(--r-link-color-hover);
-  padding: 3%; 
-  width: 100%;
+  border: 5px solid var(--r-heading-color);
+  /* padding: 3%;  */
+  width: 80%;
   height: 100%;  
+  margin: auto;
 }
 
 div.block_flat {
@@ -465,7 +466,7 @@ li:not(:last-of-type) {
 }
 
 .reveal strong, .reveal b {
-  color: var(--r-bold-color);
+  color: var(--r-heading-color);
 }
 .reveal em, .reveal blockquote {
   /* color: var(--r-italic-color); */
